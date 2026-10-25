@@ -6,7 +6,7 @@ import { getEngine } from "../games/registry";
 import { secureRng } from "../games/rng";
 import type { Rng } from "../games/types";
 import { applyLedger, getBalance } from "./wallet";
-import { assertCanStartRound, markRoundEnded } from "./responsible";
+import { assertCanStartRound, heartbeat, markRoundEnded } from "./responsible";
 import { awardRoundXp, evaluateAchievements, track, trackMission } from "./progress";
 import { ZodError } from "zod";
 
@@ -67,6 +67,8 @@ export function startRound(userId: string, slug: string, rawInput: unknown, requ
       return present(existing, slug, { replay: true });
     }
 
+    // Waktu bermain dihitung server dari aktivitas ronde (bukan hanya heartbeat klien): klien tanpa heartbeat tetap terhitung.
+    heartbeat(userId);
     if (!game.enabled) throw forbidden("GAME_DISABLED");
     const active = one<SessionRow>("SELECT * FROM game_sessions WHERE user_id=? AND game_id=? AND status='ACTIVE'", userId, game.id);
     if (active) throw conflict("ROUND_IN_PROGRESS", { sessionId: active.id });

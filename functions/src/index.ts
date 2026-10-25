@@ -8,6 +8,7 @@ import type { Express } from "express";
 // di Windows (analisis lokal `firebase deploy`) maupun di runtime Linux.
 const DB_PATH = path.join(os.tmpdir(), "zamrud-play.db");
 process.env.DB_PATH = DB_PATH;
+process.env.TRUST_PROXY = "1"; // satu proxy tepercaya (Google front end) → req.ip = IP klien sebenarnya
 
 // Filesystem Cloud Functions sementara → pulihkan berkas SQLite terakhir dari Cloud Storage sebelum backend
 // membukanya, dan unggah ulang setelah tiap mutasi (hook di backend/src/db/persistence.ts).

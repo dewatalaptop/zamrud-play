@@ -450,6 +450,27 @@ describe("misi, pencapaian, personalisasi, bermain sehat", () => {
     expect(h2.data.limitReached).toBe(true);
     expect((await c.post("/api/games/virtual-slots/sessions", slotsInput(10))).error).toBe("DAILY_LIMIT_REACHED");
   });
+  it("batas harian ditegakkan walau klien TIDAK pernah mengirim heartbeat (waktu dari aktivitas ronde)", async () => {
+    const { c } = await newUser("nohb");
+    await c.put("/api/me/responsible-play", { reminderMinutes: 30, dailyLimitMinutes: 10, cooldownSeconds: 0 });
+    let blocked = "";
+    for (let i = 0; i < 14 && !blocked; i++) {
+      advanceClock(80_000); // 80 dtk antar ronde
+      const r = await c.post("/api/games/virtual-slots/sessions", slotsInput(10));
+      if (r.status !== 200) blocked = r.error ?? "";
+    }
+    expect(blocked).toBe("DAILY_LIMIT_REACHED");
+  });
+  it("rate limit tidak bisa dilewati dengan memalsukan X-Forwarded-For", async () => {
+    const c = new Client();
+    const codes: number[] = [];
+    for (let i = 0; i < 12; i++) {
+      const r = await c.req("POST", "/api/auth/register", { email: `xff${i}${Date.now()}@test.dev`, username: `xff${i}x${Date.now() % 100000}`, displayName: "Xff", password: "kata-sandi-aman-1" }, { "x-forwarded-for": `10.0.0.${i}` });
+      codes.push(r.status);
+    }
+    expect(codes.filter((s) => s === 200)).toHaveLength(8);
+    expect(codes.slice(8).every((s) => s === 429)).toBe(true);
+  });
   it("hapus akun = anonimisasi, ledger dipertahankan, login tak mungkin lagi", async () => {
     const { c, id, email } = await newUser("del");
     await c.post("/api/games/virtual-slots/sessions", slotsInput(10));

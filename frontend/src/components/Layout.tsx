@@ -40,6 +40,7 @@ export function Footer() {
           <Link to="/responsible-play" className="hover:text-ink">{t("nav.responsible")}</Link>
           <Link to="/privacy" className="hover:text-ink">{t("nav.privacy")}</Link>
           <Link to="/terms" className="hover:text-ink">{t("nav.terms")}</Link>
+          <button type="button" className="text-left hover:text-ink" onClick={() => window.BugReporter?.openDialog({ title: t("common.reportBug") })}>{t("common.reportBug")}</button>
         </nav>
       </div>
       <p className="mx-auto max-w-7xl px-4 text-xs text-faint sm:px-6">© {new Date().getFullYear()} Zamrud Play · {t("footer.rights")}</p>

@@ -16,7 +16,7 @@ import { HttpError } from "./lib/errors";
 seedAll();
 
 export const app = express();
-app.set("trust proxy", 1);
+app.set("trust proxy", Number(process.env.TRUST_PROXY ?? 0)); // functions/src/index.ts mengisi 1
 app.disable("x-powered-by");
 
 // Tanpa CORS: frontend dan API same-origin (Hosting rewrite /api/**). Cross-site ditolak csrfGuard.

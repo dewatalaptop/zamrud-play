@@ -103,7 +103,8 @@ export const requireAdmin: RequestHandler = (req, _res, next) => {
   next();
 };
 
-export const clientIp = (req: Request) => String(req.headers["x-forwarded-for"] ?? req.socket.remoteAddress ?? "ip").split(",")[0].trim();
+// req.ip menghormati `trust proxy` (TRUST_PROXY=jumlah proxy tepercaya). Tanpa proxy, header X-Forwarded-For diabaikan.
+export const clientIp = (req: Request) => req.ip ?? req.socket.remoteAddress ?? "ip";
 
 /** Pembatas laju per kelompok rute. */
 export function limit(name: string, max: number, windowMs: number, by: "ip" | "user" = "ip"): RequestHandler {
