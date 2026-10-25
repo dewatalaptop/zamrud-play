@@ -1,0 +1,14 @@
+{
+  "title": "Game History",
+  "subtitle": "A record of every round, including the rules version in force when it was played.",
+  "time": "Time",
+  "game": "Game",
+  "result": "Result",
+  "stake": "Stake",
+  "payout": "Return",
+  "net": "Balance change",
+  "filter": "Filter by game",
+  "emptyTitle": "No rounds yet",
+  "emptyText": "Play a round and its history will appear here.",
+  "neutral": "Figures only show the virtual coin balance change for that round. It is not income and has no monetary value."
+}

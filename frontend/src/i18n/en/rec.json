@@ -1,0 +1,18 @@
+{
+  "default": "From the game catalogue",
+  "favoriteCategory": "Recommended because you like the {category} category.",
+  "preferredTag": "Recommended because you like {tag} games.",
+  "favorite": "Recommended because it is one of your favourites.",
+  "playedOften": "Recommended because you play it often.",
+  "explore": "Try something new — you have not played it yet.",
+  "why": "Why this recommendation?",
+  "tags": {
+    "luck": "luck",
+    "quick": "quick",
+    "visual": "visual",
+    "classic": "classic",
+    "strategy": "strategy",
+    "cards": "cards",
+    "numbers": "numbers"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Profil & Preferensi",
+  "subtitle": "Atur tampilan profil dan bagaimana permainan direkomendasikan kepada Anda.",
+  "identity": "Profil Anda",
+  "avatarColor": "Warna avatar",
+  "avatarIcon": "Ikon avatar",
+  "bio": "Bio singkat",
+  "showLeaderboard": "Tampilkan saya di papan peringkat",
+  "showLeaderboardHint": "Hanya nama tampilan dan XP yang terlihat.",
+  "playPrefs": "Preferensi bermain",
+  "prefsIntro": "Pilihan ini hanya dipakai untuk menyusun rekomendasi dan kenyamanan tampilan — tidak pernah memengaruhi peluang atau hasil permainan.",
+  "favCategories": "Kategori favorit",
+  "favTags": "Gaya permainan yang disukai",
+  "difficulty": "Tingkat kesulitan",
+  "anyDifficulty": "Bebas",
+  "animation": "Intensitas animasi",
+  "animationHint": "Pilih Dikurangi atau Mati bila animasi terasa mengganggu.",
+  "anim": {
+    "FULL": "Penuh",
+    "REDUCED": "Dikurangi",
+    "OFF": "Mati"
+  },
+  "personalization": "Rekomendasi personal",
+  "personalizationHint": "Bila dimatikan, urutan permainan netral dan riwayat perilaku opsional dihapus.",
+  "resetRec": "Atur ulang profil rekomendasi",
+  "deleteEvents": "Hapus riwayat perilaku opsional",
+  "noManipulation": "Kami tidak mengubah peluang, pembayaran, atau pengalaman permainan berdasarkan perilaku individu Anda.",
+  "resetRecText": "Kategori favorit, gaya yang disukai, tingkat kesulitan, dan riwayat perilaku opsional akan dikosongkan.",
+  "deleteEventsText": "Semua catatan perilaku opsional (mis. permainan yang dilihat) akan dihapus permanen. Riwayat ronde dan dompet tidak terpengaruh."
+}

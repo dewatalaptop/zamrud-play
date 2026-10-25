@@ -1,0 +1,19 @@
+{
+  "s1": {
+    "title": "1 · Virtual wallet",
+    "body": "Your coin balance sits in the top corner. These free coins have no monetary value. You start with a starting balance and can claim a daily reward."
+  },
+  "s2": {
+    "title": "2 · Games",
+    "body": "Open Games, read the rules first, then play. Every result is decided by the server, so it is fair for all players."
+  },
+  "s3": {
+    "title": "3 · Missions & achievements",
+    "body": "Complete relaxed missions for free coins and XP. There are no pressuring deadlines, and taking a break never penalises you."
+  },
+  "s4": {
+    "title": "4 · Healthy play",
+    "body": "Set reminders, a daily time limit, a cooldown, or take a break any time in Settings. It is entirely in your control."
+  },
+  "finish": "Finish"
+}

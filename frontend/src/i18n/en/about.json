@@ -1,0 +1,25 @@
+{
+  "eyebrow": "About",
+  "title": "About Zamrud Play",
+  "subtitle": "A casino-style simulation entertainment platform with free virtual coins.",
+  "s1": {
+    "title": "What is this?",
+    "body": "Zamrud Play is a simulation: slots, roulette, blackjack and dice running entirely on virtual coins. The goal is entertainment and exploration — not betting money."
+  },
+  "s2": {
+    "title": "Virtual coins",
+    "body": "Every player gets a free starting balance, daily rewards and mission rewards. Coins cannot be bought, withdrawn, transferred to other players, or exchanged for money or goods of value. There is no payment screen anywhere in this app."
+  },
+  "s3": {
+    "title": "Fair and transparent results",
+    "body": "All results are produced by the server with a cryptographic random generator. The browser never decides outcomes or payouts. Paytables and odds are shown, and rule configurations are version-numbered so past history stays interpretable. Odds are the same for every player."
+  },
+  "s4": {
+    "title": "Personalisation that respects you",
+    "body": "Game recommendations are built from preferences you choose yourself and short history, with reasons always shown. You can turn them off or reset them any time. Personalisation never changes odds, payouts, or pushes you to play longer."
+  },
+  "s5": {
+    "title": "Contact",
+    "body": "Questions or feedback? After signing in, use Settings → Contact support."
+  }
+}

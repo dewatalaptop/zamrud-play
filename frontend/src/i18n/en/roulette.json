@@ -1,0 +1,33 @@
+{
+  "colors": {
+    "red": "Red",
+    "black": "Black",
+    "green": "Green"
+  },
+  "betsCount": "bets",
+  "payouts": "Payouts",
+  "betType": "Bet type",
+  "pockets": "Winning pockets",
+  "returns": "Return",
+  "kinds": {
+    "straight": "Number",
+    "red": "Red",
+    "black": "Black",
+    "green": "Green (0)",
+    "odd": "Odd",
+    "even": "Even",
+    "low": "1-18",
+    "high": "19-36",
+    "dozen": "Dozen"
+  },
+  "spinning": "Wheel spinning…",
+  "landed": "The ball landed on {n} ({c}).",
+  "ready": "Place your bets, then spin the wheel.",
+  "chipValue": "Chip value",
+  "numbers": "Number grid",
+  "dozen": "Dozen {n}",
+  "yourBets": "Your bets",
+  "maxBets": "Maximum {n} bets per spin. Select again to remove a bet.",
+  "spin": "Spin the wheel",
+  "clear": "Clear"
+}

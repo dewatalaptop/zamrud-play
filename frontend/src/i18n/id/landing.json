@@ -1,0 +1,44 @@
+{
+  "eyebrow": "Hiburan simulasi · koin virtual gratis",
+  "title": "Rasakan suasana kasino — tanpa uang nyata.",
+  "subtitle": "Zamrud Play adalah taman bermain simulasi: putar slot, pasang taruhan roulette, adu strategi blackjack, dan tebak dadu dengan koin virtual gratis. Semua hasil dihitung server dengan aturan yang terbuka.",
+  "cta": "Mulai Bermain Gratis",
+  "secondary": "Lihat Permainan",
+  "demoBalance": "Saldo awal gratis",
+  "featuredEyebrow": "Permainan unggulan",
+  "featuredTitle": "Empat permainan, aturan transparan",
+  "allGames": "Semua permainan",
+  "coinsEyebrow": "Koin virtual",
+  "coinsTitle": "Koin hanya untuk bersenang-senang",
+  "coinsBody": "Setiap pemain mendapat koin virtual gratis. Koin tidak bisa dibeli, ditarik, dikirim ke pemain lain, atau ditukar dengan apa pun yang bernilai uang.",
+  "coins_free": {
+    "title": "Selalu gratis",
+    "text": "Saldo awal, hadiah harian, dan hadiah misi tanpa biaya apa pun."
+  },
+  "coins_noMoney": {
+    "title": "Tanpa uang nyata",
+    "text": "Tidak ada setoran, penarikan, pembayaran, maupun kripto."
+  },
+  "coins_noTransfer": {
+    "title": "Tidak dapat dipindahkan",
+    "text": "Koin terikat pada akun Anda dan tidak bisa diperjualbelikan."
+  },
+  "coins_noPressure": {
+    "title": "Tanpa tekanan",
+    "text": "Tidak ada hitung mundur palsu, bonus agar terus bermain, atau pengejaran kekalahan."
+  },
+  "progressEyebrow": "Kemajuan",
+  "progressTitle": "Misi, level, dan pencapaian",
+  "progressBody": "Selesaikan misi santai, kumpulkan XP, naik level, dan buka lencana. Tidak ada yang mengharuskan Anda bermain lama atau menaikkan taruhan.",
+  "missionDemo": "Misi mingguan",
+  "missionDemoText": "Mainkan tiga jenis permainan berbeda dalam seminggu.",
+  "badgeDemo": "Lencana",
+  "levelDemo": "Level",
+  "statsDemoChart": "Ronde per hari (contoh)",
+  "statsEyebrow": "Statistik pribadi",
+  "statsTitle": "Pahami cara Anda bermain",
+  "statsBody": "Lihat ringkasan ronde, kategori favorit, dan tren durasi sesi. Bahasa netral: kami menampilkan perubahan saldo virtual, bukan penghasilan.",
+  "rpTitle": "Bermain sehat itu bagian dari desain",
+  "rpBody": "Pengingat sesi, batas waktu harian, jeda sukarela, dan cooldown tersedia untuk semua pemain — dan tidak pernah dilemahkan oleh personalisasi.",
+  "rpCta": "Pelajari bermain sehat"
+}

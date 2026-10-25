@@ -1,0 +1,20 @@
+{
+  "paytable": "Paytable",
+  "symbol": "Symbol",
+  "chance": "Chance per reel",
+  "rtpNote": "Theoretical average return: {rtp}% (computed exactly across all combinations).",
+  "symbols": {
+    "CHERRY": "Cherry",
+    "LEMON": "Lemon",
+    "BELL": "Bell",
+    "CLOVER": "Clover",
+    "STAR": "Star",
+    "DIAMOND": "Diamond",
+    "SEVEN": "Seven"
+  },
+  "spinning": "Reels spinning…",
+  "matched": "A match! Returned {mult}x your stake.",
+  "noMatch": "No combination this time.",
+  "ready": "Pick a stake, then spin.",
+  "spin": "Spin"
+}

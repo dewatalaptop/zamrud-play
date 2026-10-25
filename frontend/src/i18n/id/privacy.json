@@ -1,0 +1,33 @@
+{
+  "eyebrow": "Legal",
+  "title": "Kebijakan Privasi",
+  "subtitle": "Kami mengumpulkan sesedikit mungkin data, dan Anda memegang kendalinya.",
+  "s1": {
+    "title": "Data yang kami simpan",
+    "body": "Email, nama pengguna, nama tampilan, hash kata sandi (bukan kata sandi asli), preferensi, catatan ronde dan dompet virtual, durasi sesi, serta — hanya jika personalisasi aktif — event perilaku opsional seperti permainan yang dilihat."
+  },
+  "s2": {
+    "title": "Untuk apa data dipakai",
+    "body": "Menjalankan akun dan dompet virtual, menampilkan riwayat dan statistik Anda, menegakkan fitur bermain sehat, merekomendasikan permainan, dan menjaga keamanan. Kami tidak menjual data dan tidak membagikannya ke pengiklan."
+  },
+  "s3": {
+    "title": "Yang tidak kami lakukan",
+    "body": "Kami tidak memakai data individu untuk menaikkan intensitas bermain, menyasar pemain setelah kekalahan, menyimpulkan kerentanan psikologis untuk keperluan komersial, mengubah peluang permainan, atau mengurangi pengingat istirahat."
+  },
+  "s4": {
+    "title": "Cookie",
+    "body": "Kami hanya memakai satu cookie esensial (__session) untuk menjaga Anda tetap masuk. Cookie ini HttpOnly dan tidak dipakai untuk pelacakan iklan."
+  },
+  "s5": {
+    "title": "Kendali Anda",
+    "body": "Anda dapat mematikan personalisasi, mengatur ulang profil rekomendasi, dan menghapus riwayat perilaku opsional kapan saja di Profil. Anda juga dapat menghapus akun di Pengaturan."
+  },
+  "s6": {
+    "title": "Retensi & penghapusan",
+    "body": "Event perilaku opsional dihapus saat Anda memintanya atau mematikan personalisasi. Saat akun dihapus, data pribadi dianonimkan; catatan transaksi koin virtual dipertahankan tanpa identitas untuk integritas audit. Log audit admin disimpan untuk akuntabilitas."
+  },
+  "s7": {
+    "title": "Keamanan",
+    "body": "Kata sandi di-hash dengan scrypt, sesi memakai token acak yang hanya disimpan sebagai hash, dan seluruh operasi saldo dilakukan server dalam transaksi atomik. Tidak ada sistem yang sempurna; laporkan kerentanan lewat dukungan."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "results": {
+    "BLACKJACK": "Blackjack!",
+    "WIN": "Anda menang ronde ini",
+    "DEALER_BUST": "Dealer melewati 21",
+    "LOSE": "Dealer lebih tinggi",
+    "BUST": "Total Anda melewati 21",
+    "PUSH": "Seri — taruhan dikembalikan",
+    "DEALER_BLACKJACK": "Dealer mendapat blackjack"
+  },
+  "doubled": "digandakan",
+  "payoutRules": "Blackjack alami membayar {bj}, menang biasa 1:1, seri mengembalikan taruhan. Dealer berhenti di semua 17. Shoe {decks} dek dikocok baru tiap ronde.",
+  "dealer": "Dealer",
+  "player": "Anda",
+  "placeStake": "Pilih taruhan lalu bagikan kartu.",
+  "soft": "lunak",
+  "yourTurn": "Giliran Anda. Taruhan ronde ini: {n} koin virtual.",
+  "ready": "Siap membagikan kartu.",
+  "hit": "Ambil",
+  "stand": "Berhenti",
+  "double": "Gandakan",
+  "doubleHint": "Hanya pada dua kartu pertama: taruhan tambahan sama besar, satu kartu lagi.",
+  "deal": "Bagikan",
+  "serverNote": "Server menyimpan semua kartu dan memvalidasi setiap langkah. Muat ulang halaman? Ronde Anda akan dilanjutkan.",
+  "totals": "Total Anda {p} · Dealer {d}"
+}

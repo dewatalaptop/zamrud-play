@@ -1,0 +1,17 @@
+{
+  "roll": "Roll",
+  "under": "Under",
+  "over": "Over",
+  "hit": "Correct guess",
+  "miss": "Missed guess",
+  "formula": "Return = floor(stake x {num} / winning numbers) ({sides}-sided die), rounded down. No hidden numbers.",
+  "ready": "Set your guess, then roll.",
+  "rolling": "Dice rolling…",
+  "prediction": "Guess",
+  "target": "Target number",
+  "chance": "Chance",
+  "winningNumbers": "Winning numbers",
+  "rollNow": "Roll",
+  "fairNote": "The server rolls with cryptographic randomness; the client cannot influence it.",
+  "summary": "Rolled {roll}. Your guess: {mode} {target}."
+}

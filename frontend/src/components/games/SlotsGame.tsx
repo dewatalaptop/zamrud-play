@@ -1,0 +1,105 @@
+import { useEffect, useLayoutEffect, useState } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+import { Play } from "lucide-react";
+import { useI18n } from "../../i18n";
+import { useMotion } from "../../lib/hooks";
+import { GameResultModal } from "../GameResultModal";
+import { SymbolIcon } from "./art";
+import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
+
+const CELL = 128;
+const FILLER = 14;
+
+function Reel({ symbols, target, spinning, delay, win, motionOn }: { symbols: string[]; target: string; spinning: number; delay: number; win: boolean; motionOn: boolean }) {
+  const controls = useAnimationControls();
+  const [strip, setStrip] = useState<string[]>([target]);
+  // Strip acak (murni visual) yang berakhir di simbol hasil dari server.
+  useEffect(() => {
+    if (spinning === 0) return;
+    const filler = Array.from({ length: FILLER }, () => symbols[Math.floor(Math.random() * symbols.length)]);
+    setStrip((prev) => [prev[prev.length - 1], ...filler, target]);
+  }, [spinning]); // eslint-disable-line react-hooks/exhaustive-deps
+  useLayoutEffect(() => {
+    if (strip.length < 2) return;
+    controls.set({ y: 0 });
+    const end = -(strip.length - 1) * CELL;
+    if (motionOn) void controls.start({ y: end, transition: { duration: 1.1 + delay, ease: [0.2, 0.7, 0.2, 1] } });
+    else controls.set({ y: end });
+  }, [strip]); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <div className={`reel ${win ? "reel-win" : ""}`} role="img" aria-label={target}>
+      <motion.div className="reel-strip" animate={controls} initial={{ y: 0 }}>
+        {strip.map((s, i) => <div key={i} className="reel-cell"><SymbolIcon id={s} size={84} /></div>)}
+      </motion.div>
+    </div>
+  );
+}
+
+export default function SlotsGame({ game }: GameProps) {
+  const { t, n } = useI18n();
+  const m = useMotion();
+  const cfg = game.rules;
+  const symbols: string[] = cfg.symbols.map((s: any) => s.id);
+  const { start, busy } = useRound(game.slug);
+  const [stake, setStake] = useState<number>(cfg.stakeSteps[1] ?? cfg.stakeSteps[0]);
+  const [reels, setReels] = useState<string[]>(["SEVEN", "SEVEN", "SEVEN"]);
+  const [spin, setSpin] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [result, setResult] = useState<{ stake: number; payout: number; reels: string[]; mult: number } | null>(null);
+  const [open, setOpen] = useState(false);
+  const [recent, setRecent] = useState<{ reels: string[]; net: number }[]>([]);
+
+  const spinNow = async () => {
+    const r = await start({ stake });
+    if (!r) return;
+    const out = r.view.reels as string[];
+    setReels(out); setSpin((x) => x + 1); setAnimating(true);
+    await wait(m.reduced ? 120 : 2100);
+    setAnimating(false);
+    const mult = r.stake ? r.payout / r.stake : 0;
+    setResult({ stake: r.stake, payout: r.payout, reels: out, mult });
+    setRecent((x) => [{ reels: out, net: (r.net ?? 0) }, ...x].slice(0, 6));
+    setOpen(true);
+  };
+  const win = !animating && !!result && result.payout > 0;
+
+  return (
+    <div className="grid gap-4">
+      <BalanceBar />
+      <div className="slot-machine">
+        <div className="grid grid-cols-3 gap-3" aria-live="polite">
+          {reels.map((s, i) => <Reel key={i} symbols={symbols} target={s} spinning={spin} delay={i * 0.35} win={win} motionOn={!m.reduced} />)}
+        </div>
+        <p className="mt-3 min-h-5 text-center text-sm text-muted" aria-live="polite">
+          {animating ? t("slots.spinning") : result ? (result.payout > 0 ? t("slots.matched", { mult: result.mult }) : t("slots.noMatch")) : t("slots.ready")}
+        </p>
+      </div>
+      <div className="card grid gap-4">
+        <div>
+          <p className="mb-2 text-sm font-semibold">{t("game.stake")}</p>
+          <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating} label={t("game.stake")} />
+        </div>
+        <button className="btn btn-primary btn-lg" onClick={spinNow} disabled={busy || animating}><Play size={18} />{t("slots.spin")} · {n(stake)}</button>
+      </div>
+      {recent.length > 0 && (
+        <section className="card" aria-label={t("game.recent")}>
+          <h3 className="mb-3 text-sm font-bold">{t("game.recent")}</h3>
+          <ul className="grid gap-2">
+            {recent.map((r, i) => (
+              <li key={i} className="flex items-center justify-between rounded-xl bg-surface-2 px-3 py-2">
+                <span className="flex gap-1">{r.reels.map((s, j) => <SymbolIcon key={j} id={s} size={26} />)}</span>
+                <span className="num text-sm font-semibold">{r.net > 0 ? "+" : r.net < 0 ? "−" : ""}{n(Math.abs(r.net))}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {result && (
+        <GameResultModal open={open} onClose={() => setOpen(false)} onAgain={() => { setOpen(false); void spinNow(); }}
+          title={t("game.roundResult")} stake={result.stake} payout={result.payout}>
+          <div className="flex justify-center gap-2">{result.reels.map((s, i) => <SymbolIcon key={i} id={s} size={56} />)}</div>
+        </GameResultModal>
+      )}
+    </div>
+  );
+}

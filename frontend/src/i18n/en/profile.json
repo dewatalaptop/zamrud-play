@@ -1,0 +1,30 @@
+{
+  "title": "Profile & Preferences",
+  "subtitle": "Set how your profile looks and how games are recommended to you.",
+  "identity": "Your profile",
+  "avatarColor": "Avatar colour",
+  "avatarIcon": "Avatar icon",
+  "bio": "Short bio",
+  "showLeaderboard": "Show me on the leaderboard",
+  "showLeaderboardHint": "Only your display name and XP are visible.",
+  "playPrefs": "Play preferences",
+  "prefsIntro": "These choices are only used to order recommendations and tune comfort — they never affect odds or game results.",
+  "favCategories": "Favourite categories",
+  "favTags": "Play styles you like",
+  "difficulty": "Difficulty",
+  "anyDifficulty": "Any",
+  "animation": "Animation intensity",
+  "animationHint": "Choose Reduced or Off if animation feels distracting.",
+  "anim": {
+    "FULL": "Full",
+    "REDUCED": "Reduced",
+    "OFF": "Off"
+  },
+  "personalization": "Personalised recommendations",
+  "personalizationHint": "When off, game order is neutral and optional behavioural history is deleted.",
+  "resetRec": "Reset recommendation profile",
+  "deleteEvents": "Delete optional behavioural history",
+  "noManipulation": "We never change odds, payouts or the game experience based on your individual behaviour.",
+  "resetRecText": "Favourite categories, liked styles, difficulty and optional behavioural history will be cleared.",
+  "deleteEventsText": "All optional behaviour records (e.g. games viewed) will be permanently deleted. Round and wallet history are unaffected."
+}

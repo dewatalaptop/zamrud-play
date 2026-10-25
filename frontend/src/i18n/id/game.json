@@ -1,0 +1,14 @@
+{
+  "rules": "Aturan",
+  "understood": "Saya mengerti",
+  "stakeRange": "Taruhan: {min} – {max} koin virtual.",
+  "virtualNote": "Semua ronde memakai koin virtual yang tidak bernilai uang.",
+  "configVersion": "Konfigurasi aturan versi {v} (hasil lama tetap mengikuti aturan yang berlaku saat dimainkan).",
+  "stake": "Taruhan (koin virtual)",
+  "recent": "Hasil terbaru",
+  "roundResult": "Hasil ronde",
+  "playAgain": "Main lagi",
+  "returned": "Dikembalikan",
+  "exit": "Keluar",
+  "noPrediction": "Setiap ronde bersifat independen: hasil sebelumnya tidak memengaruhi atau memprediksi hasil berikutnya."
+}

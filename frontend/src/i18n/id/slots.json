@@ -1,0 +1,20 @@
+{
+  "paytable": "Tabel pembayaran",
+  "symbol": "Simbol",
+  "chance": "Peluang per gulungan",
+  "rtpNote": "Pengembalian rata-rata teoretis: {rtp}% (dihitung eksak dari seluruh kombinasi).",
+  "symbols": {
+    "CHERRY": "Ceri",
+    "LEMON": "Lemon",
+    "BELL": "Lonceng",
+    "CLOVER": "Semanggi",
+    "STAR": "Bintang",
+    "DIAMOND": "Berlian",
+    "SEVEN": "Tujuh"
+  },
+  "spinning": "Gulungan berputar…",
+  "matched": "Kombinasi cocok! Pengembalian {mult}× taruhan.",
+  "noMatch": "Tidak ada kombinasi kali ini.",
+  "ready": "Pilih taruhan lalu putar.",
+  "spin": "Putar"
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Achievements",
+  "subtitle": "Non-monetary badges for your play journey.",
+  "unlocked": "unlocked",
+  "locked": "locked",
+  "unlockedOn": "Unlocked {date}",
+  "unlockedCount": "badges unlocked"
+}

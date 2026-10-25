@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070b16" />
+    <meta name="description" content="Zamrud Play — platform hiburan simulasi bergaya kasino dengan koin virtual gratis. Tanpa uang nyata." />
+    <title>Zamrud Play</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+    <!--
+      Pelaporan bug otomatis ke App Builder (templates/shared/bug-reporter). Isi BUG_APP_ID / BUG_APP_KEY dengan
+      hasil `node local-worker/job.js register-app <jobId> <appId>`; naikkan "version" tiap rilis.
+    -->
+    <script src="/bug-reporter.js"></script>
+    <script>
+      if (window.BugReporter) BugReporter.init({ appId: "BUG_APP_ID", key: "BUG_APP_KEY", version: "1.0.0" });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

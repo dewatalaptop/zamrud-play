@@ -1,0 +1,169 @@
+@import "./ui-kit.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Token desain Zamrud Play — mengikuti pola token template (satu --brand-hue), dengan tema
+ * gelap "navy tengah malam" sebagai default (sesuai arahan produk) dan tema terang opsional.
+ * Aksen: zamrud (brand) + emas (hanya untuk pencapaian/lencana).
+ */
+:root {
+  color-scheme: dark;
+  --brand-hue: 155;
+  --brand-50: hsl(155 45% 14%);
+  --brand-400: hsl(155 62% 52%);
+  --brand-500: hsl(155 68% 34%);
+  --brand-600: hsl(155 68% 29%);
+  --brand-700: hsl(155 65% 72%);
+  --gold: hsl(43 96% 56%);
+  --gold-soft: hsl(43 60% 16%);
+
+  --bg: hsl(224 48% 6%);
+  --surface: hsl(224 32% 10%);
+  --surface-2: hsl(224 28% 14%);
+  --text: hsl(210 30% 96%);
+  --text-secondary: hsl(215 16% 72%);
+  --text-faint: hsl(215 12% 55%);
+  --border: hsl(224 24% 22%);
+  --border-soft: hsl(224 24% 17%);
+
+  --success-bg: hsl(152 40% 16%);
+  --success-text: hsl(152 60% 68%);
+  --warning-bg: hsl(38 45% 17%);
+  --warning-text: hsl(40 90% 70%);
+  --error-bg: hsl(350 40% 18%);
+  --error-text: hsl(350 85% 76%);
+
+  --shadow-color: 224 60% 2%;
+  --reel-bg: linear-gradient(180deg, hsl(224 30% 8%), hsl(224 28% 13%) 50%, hsl(224 30% 8%));
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --brand-50: hsl(155 55% 94%);
+  --brand-400: hsl(155 60% 42%);
+  --brand-500: hsl(155 70% 30%);
+  --brand-600: hsl(155 72% 24%);
+  --brand-700: hsl(155 70% 22%);
+  --gold: hsl(38 92% 42%);
+  --gold-soft: hsl(43 90% 92%);
+  --bg: hsl(210 30% 97%);
+  --surface: #ffffff;
+  --surface-2: hsl(210 25% 94%);
+  --text: hsl(224 40% 12%);
+  --text-secondary: hsl(222 14% 36%);
+  --text-faint: hsl(222 10% 50%);
+  --border: hsl(214 20% 86%);
+  --border-soft: hsl(214 20% 92%);
+  --success-bg: hsl(152 60% 93%);
+  --success-text: hsl(152 60% 24%);
+  --warning-bg: hsl(43 90% 91%);
+  --warning-text: hsl(30 80% 30%);
+  --error-bg: hsl(350 85% 95%);
+  --error-text: hsl(350 70% 38%);
+  --shadow-color: 224 30% 20%;
+  --reel-bg: linear-gradient(180deg, hsl(210 25% 92%), #fff 50%, hsl(210 25% 92%));
+}
+
+:root[data-contrast="high"] {
+  --border: hsl(215 20% 55%);
+  --text-secondary: hsl(210 25% 88%);
+  --text-faint: hsl(215 15% 74%);
+}
+:root[data-theme="light"][data-contrast="high"] {
+  --border: hsl(222 20% 40%);
+  --text-secondary: hsl(224 40% 18%);
+  --text-faint: hsl(222 20% 30%);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+:root[data-theme="dark"] body,
+:root:not([data-theme="light"]) body {
+  background:
+    radial-gradient(900px 480px at 85% -10%, hsl(155 70% 30% / 0.18), transparent 60%),
+    radial-gradient(700px 420px at -5% 10%, hsl(230 70% 40% / 0.14), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+h1, h2, h3, .font-display { font-family: Sora, Inter, system-ui, sans-serif; letter-spacing: -0.01em; }
+
+:focus-visible { outline: 2px solid var(--brand-400); outline-offset: 2px; border-radius: 6px; }
+.skip-link { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--brand-500); color: #fff; padding: 8px 14px; border-radius: 8px; }
+.skip-link:focus { left: 8px; }
+
+/* Kaca halus (glass) untuk navbar & panel */
+.glass { background: hsl(224 32% 10% / 0.72); backdrop-filter: blur(14px); border: 1px solid var(--border-soft); }
+:root[data-theme="light"] .glass { background: hsl(0 0% 100% / 0.8); }
+.card { background: var(--surface); border-color: var(--border-soft); }
+.card-glow { box-shadow: var(--shadow-md); border-color: hsl(155 60% 40% / 0.35); }
+.input, .select, .textarea { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary { background: var(--surface-2); }
+.btn-gold { background: linear-gradient(135deg, hsl(43 96% 56%), hsl(36 92% 46%)); color: hsl(224 40% 8%); }
+.btn-gold:hover:not(:disabled) { filter: brightness(1.06); transform: translateY(-1px); }
+
+.eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-400); font-weight: 700; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 600; background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-secondary); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── Chip taruhan ── */
+.stake-chip { min-width: 56px; padding: 8px 12px; border-radius: 999px; border: 1px dashed var(--border); background: var(--surface-2); color: var(--text); font-weight: 700; font-size: .85rem; cursor: pointer; transition: all .15s; }
+.stake-chip:hover { border-color: var(--brand-400); }
+.stake-chip[aria-pressed="true"] { background: var(--brand-500); border-style: solid; border-color: var(--brand-400); color: #fff; box-shadow: 0 0 0 3px hsl(155 70% 40% / .25); }
+
+/* ── Slots ── */
+.slot-machine { background: linear-gradient(160deg, var(--surface-2), var(--surface)); border: 1px solid var(--border); border-radius: 24px; padding: 20px; box-shadow: var(--shadow-lg), inset 0 1px 0 hsl(0 0% 100% / .05); }
+.reel { position: relative; height: 128px; width: 100%; overflow: hidden; border-radius: 16px; background: var(--reel-bg); border: 1px solid var(--border); box-shadow: inset 0 8px 16px -8px rgb(0 0 0 / .5), inset 0 -8px 16px -8px rgb(0 0 0 / .5); }
+.reel-strip { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; }
+.reel-cell { height: 128px; display: grid; place-items: center; }
+.reel-win { box-shadow: 0 0 0 2px var(--gold), 0 0 24px hsl(43 96% 56% / .35), inset 0 8px 16px -8px rgb(0 0 0 / .5); }
+
+/* ── Roulette ── */
+.wheel-spin { transform-origin: 50% 50%; }
+.roulette-cell { min-width: 0; aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px; font-weight: 700; font-size: .85rem; color: #fff; border: 1px solid hsl(0 0% 100% / .12); cursor: pointer; transition: transform .1s, box-shadow .1s; }
+.roulette-cell:hover { transform: translateY(-1px); }
+.roulette-cell[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--gold); }
+.rc-red { background: hsl(355 70% 40%); } .rc-black { background: hsl(224 20% 14%); } .rc-green { background: hsl(155 68% 28%); }
+.bet-btn { padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); font-weight: 600; font-size: .85rem; cursor: pointer; transition: all .15s; color: var(--text); }
+.bet-btn:hover { border-color: var(--brand-400); }
+.bet-btn[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 2px hsl(43 96% 56% / .3); }
+
+/* ── Kartu ── */
+.pcard { width: 64px; height: 92px; border-radius: 10px; background: #fff; color: #111; border: 1px solid #d5d9e0; display: grid; grid-template: 1fr / 1fr; box-shadow: 0 8px 18px -8px rgb(0 0 0 / .6); position: relative; font-weight: 800; flex-shrink: 0; }
+.pcard.red { color: #c0233a; }
+.pcard .corner { position: absolute; top: 6px; left: 8px; font-size: 1rem; line-height: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pcard .pip { place-self: center; font-size: 2rem; }
+.pcard.back { background: repeating-linear-gradient(45deg, hsl(155 60% 26%) 0 6px, hsl(155 60% 20%) 6px 12px); border: 3px solid #fff; }
+@media (min-width: 640px) { .pcard { width: 76px; height: 108px; } }
+
+/* ── Dadu ── */
+.die { width: 84px; height: 84px; border-radius: 18px; background: linear-gradient(145deg, #fff, #e3e7ee); color: #111; display: grid; place-items: center; font-family: Sora, sans-serif; font-weight: 800; font-size: 2rem; box-shadow: 0 10px 24px -10px rgb(0 0 0 / .7); }
+
+/* ── Util ── */
+.scroll-thin::-webkit-scrollbar { height: 8px; width: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+.pulse-soft { animation: pulseSoft 2.4s ease-in-out infinite; }
+@keyframes pulseSoft { 0%,100% { opacity: 1 } 50% { opacity: .6 } }
+.skeleton { background: linear-gradient(90deg, var(--surface-2) 25%, var(--border-soft) 50%, var(--surface-2) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 12px; }
+@keyframes shimmer { to { background-position: -200% 0 } }
+
+/* Gerak dikurangi: preferensi OS atau pilihan pemain (data-motion) */
+:root[data-motion="off"] *, :root[data-motion="reduced"] * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+
+/* Responsif: anak grid boleh menyusut & teks tombol panjang boleh membungkus (cegah scroll horizontal di layar kecil). */
+.grid > *, .flex > * { min-width: 0; }
+.btn { white-space: normal; text-align: center; }
+.btn.btn-sm, .stake-chip, .chip { white-space: nowrap; }
+.btn:has(> svg:only-child) { white-space: nowrap; }
+html, body { overflow-x: clip; }

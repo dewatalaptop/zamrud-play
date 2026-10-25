@@ -1,0 +1,24 @@
+{
+  "name": "zamrud-play",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Zamrud Play — platform hiburan simulasi bergaya kasino dengan koin virtual gratis.",
+  "scripts": {
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently -n api,web -c green,cyan \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm --prefix frontend run build && npm --prefix backend run build",
+    "start": "npm --prefix backend run start",
+    "typecheck": "npm --prefix backend run typecheck && npm --prefix frontend run typecheck",
+    "i18n:check": "npm --prefix frontend run i18n:check",
+    "test": "npm --prefix backend test",
+    "test:e2e": "playwright test",
+    "admin:promote": "npm --prefix backend run admin:promote --",
+    "check": "npm run typecheck && npm run i18n:check && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "concurrently": "^9.0.1"
+  }
+}

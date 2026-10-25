@@ -1,0 +1,14 @@
+{
+  "title": "Riwayat Permainan",
+  "subtitle": "Catatan setiap ronde, lengkap dengan versi aturan yang berlaku saat dimainkan.",
+  "time": "Waktu",
+  "game": "Permainan",
+  "result": "Hasil",
+  "stake": "Taruhan",
+  "payout": "Pengembalian",
+  "net": "Perubahan saldo",
+  "filter": "Filter permainan",
+  "emptyTitle": "Belum ada ronde",
+  "emptyText": "Mainkan satu ronde dan riwayatnya akan muncul di sini.",
+  "neutral": "Angka hanya menunjukkan perubahan saldo koin virtual pada ronde tersebut. Itu bukan penghasilan dan tidak punya nilai uang."
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Misi",
+  "subtitle": "Misi santai untuk mengenal permainan. Hadiahnya koin virtual gratis dan XP.",
+  "period": {
+    "DAILY": "Harian",
+    "WEEKLY": "Mingguan",
+    "ONCE": "Sekali"
+  },
+  "groups": {
+    "DAILY": "Misi harian",
+    "WEEKLY": "Tantangan mingguan",
+    "ONCE": "Misi pengenalan"
+  },
+  "progress": "Kemajuan",
+  "claimed": "Hadiah diklaim",
+  "claim": "Klaim hadiah",
+  "noPressure": "Tanpa batas waktu yang menekan.",
+  "emptyTitle": "Belum ada misi aktif",
+  "emptyText": "Misi baru akan muncul di sini.",
+  "claimedToast": "Hadiah misi diterima: +{n} koin virtual.",
+  "policy": "Misi tidak pernah meminta taruhan lebih besar, bermain terus-menerus, atau mengejar kekalahan. Misi yang selesai tetap bisa diklaim kapan pun."
+}

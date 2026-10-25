@@ -1,0 +1,18 @@
+{
+  "hello": "Hello, {name}!",
+  "subtitle": "A summary of your play, missions and recommendations.",
+  "progress": "Level progress",
+  "todayPlay": "Today: {time} played",
+  "tourTitle": "Quick tour (1 minute)",
+  "tourText": "Get to know the wallet, the games and the healthy-play tools. Finishing it unlocks a mission with free coins.",
+  "tourStart": "Start tour",
+  "tourDone": "Tour complete! Claim the reward on the Missions page.",
+  "forYou": "For you",
+  "recNote": "Recommendations based on your preferences.",
+  "recOff": "Personalisation is off.",
+  "recManage": "Manage",
+  "missionsTitle": "Missions for you",
+  "seeAll": "See all",
+  "allMissionsDone": "All missions claimed. Nice!",
+  "recentTitle": "Latest rounds"
+}

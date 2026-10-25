@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Katalog",
+  "title": "Permainan",
+  "subtitle": "Empat permainan simulasi dengan koin virtual gratis. Setiap hasil dihitung server dan aturannya terbuka untuk dibaca.",
+  "filterCategory": "Filter kategori",
+  "searchPlaceholder": "Cari permainan…",
+  "empty": "Tidak ada permainan yang cocok.",
+  "notFound": "Permainan tidak ditemukan",
+  "play": "Mainkan",
+  "playFree": "Mulai gratis",
+  "details": "Detail",
+  "favorite": "Tandai favorit",
+  "unfavorite": "Hapus dari favorit",
+  "categories": {
+    "SLOTS": "Slot",
+    "WHEEL": "Roda",
+    "CARDS": "Kartu",
+    "DICE": "Dadu"
+  },
+  "difficulty": {
+    "easy": "Mudah",
+    "medium": "Menengah",
+    "hard": "Butuh strategi"
+  }
+}

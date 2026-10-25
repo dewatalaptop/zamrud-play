@@ -1,0 +1,17 @@
+{
+  "roll": "Lemparan",
+  "under": "Di bawah",
+  "over": "Di atas",
+  "hit": "Tebakan tepat",
+  "miss": "Tebakan meleset",
+  "formula": "Pengembalian = ⌊taruhan × {num} ÷ jumlah angka menang⌋ (dadu {sides} sisi), dibulatkan ke bawah. Tidak ada angka rahasia.",
+  "ready": "Atur tebakan lalu lempar.",
+  "rolling": "Dadu berguling…",
+  "prediction": "Tebakan",
+  "target": "Angka target",
+  "chance": "Peluang",
+  "winningNumbers": "Angka menang",
+  "rollNow": "Lempar",
+  "fairNote": "Hasil dilempar server dengan acak kriptografis; klien tidak dapat memengaruhinya.",
+  "summary": "Hasil lemparan {roll}. Tebakan Anda: {mode} {target}."
+}

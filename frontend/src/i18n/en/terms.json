@@ -1,0 +1,37 @@
+{
+  "eyebrow": "Legal",
+  "title": "Terms of Service",
+  "subtitle": "Simple rules so everyone can have fun safely.",
+  "s1": {
+    "title": "A simulation entertainment service",
+    "body": "Zamrud Play is simulation entertainment. All balances and results are virtual, have no monetary value, and cannot be cashed out, purchased, transferred or traded."
+  },
+  "s2": {
+    "title": "Eligibility",
+    "body": "You must be 18 or over and provide accurate account information. One person, one account."
+  },
+  "s3": {
+    "title": "Prohibited conduct",
+    "body": "Do not tamper with requests to change balances or results, exploit bugs, use bots, disrupt the service, or try to access other players' data."
+  },
+  "s4": {
+    "title": "Game fairness",
+    "body": "Results are decided by the server under published rules that are identical for all players. Admins may publish new rules versions; a round in progress keeps its rules."
+  },
+  "s5": {
+    "title": "Availability & demo data",
+    "body": "The service is provided as is. In demo environments, data may be reset at any time."
+  },
+  "s6": {
+    "title": "Account suspension",
+    "body": "We may suspend accounts that violate these terms. Every suspension is recorded with its reason."
+  },
+  "s7": {
+    "title": "Limitation of liability",
+    "body": "Because no monetary value is involved, we are not liable for loss of virtual coins. We work to keep the service reliable and secure."
+  },
+  "s8": {
+    "title": "Changes to these terms",
+    "body": "Terms may be updated; material changes are announced in the app."
+  }
+}

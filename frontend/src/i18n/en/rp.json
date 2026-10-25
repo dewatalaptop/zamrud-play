@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Healthy Play",
+  "title": "Healthy play",
+  "subtitle": "The best entertainment stays enjoyable and under control.",
+  "s1": {
+    "title": "This is only a simulation",
+    "body": "Zamrud Play uses free virtual coins with no monetary value. There are no deposits, withdrawals or prizes of monetary value. Even so, your play habits deserve attention."
+  },
+  "s2": {
+    "title": "Tools available to you",
+    "body": "• Session reminders (10-180 minutes, cannot be turned off)\n• Optional daily play-time limit\n• Voluntary breaks from 15 minutes to 24 hours\n• Cooldown between rounds\n• Always-visible session timer\n• An exit button that is always within reach"
+  },
+  "s3": {
+    "title": "Our design commitments",
+    "body": "We do not raise stakes, target players after losses, delay rewards to keep you playing, or weaken reminders for frequent players. Odds and payouts are identical for every player on the same rules version. Streaks and rewards never depend on uninterrupted play."
+  },
+  "s4": {
+    "title": "Signs it is time to pause",
+    "body": "Stop and rest if you feel pushed to keep playing, restless when you stop, neglect sleep/work/relationships, or try to \"win back\" earlier rounds. Earlier results do not predict later ones."
+  },
+  "s5": {
+    "title": "Talk to someone you trust",
+    "body": "If your play habits feel hard to control — on any platform — talk to family, friends or a mental-health professional near you."
+  },
+  "s6": {
+    "title": "Age",
+    "body": "This platform is intended for users aged 18 and over."
+  },
+  "guestTitle": "Set your controls",
+  "guestBody": "Sign in or sign up to set reminders, a daily limit, a cooldown and breaks."
+}

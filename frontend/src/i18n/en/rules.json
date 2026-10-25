@@ -1,0 +1,30 @@
+{
+  "independent": "Every round is independent. Earlier patterns or results do not predict later ones, and the same rules apply to all players.",
+  "virtual-slots": {
+    "intro": "Three reels spin and stop on symbols chosen by the server using fixed weights (see the table).",
+    "p1": "Three matching symbols pay the largest multiplier in the table.",
+    "p2": "Exactly two matching symbols pay a small multiplier (two cherries pay 2x; a Bell pair and above returns the stake 1x).",
+    "p3": "All different symbols pay nothing.",
+    "p4": "Multipliers are total returns including the stake, in whole numbers."
+  },
+  "euro-roulette": {
+    "intro": "The European wheel has 37 pockets (0-36). The server picks one pocket with uniform randomness.",
+    "p1": "You may place several bets at once; each bet is settled on its own.",
+    "p2": "A single number pays 36x (stake included), colour/odd-even/low-high 2x, dozens 3x.",
+    "p3": "Pocket 0 (green) beats every bet except a bet on number 0 or green.",
+    "p4": "Odds are computed exactly: average return of 97.3% (36/37) per bet type."
+  },
+  "blackjack-21": {
+    "intro": "Get your card total as close to 21 as possible without going over, and beat the dealer's hand.",
+    "p1": "Hit, Stand, or Double down on your first two cards: an equal extra stake and exactly one more card.",
+    "p2": "The dealer stands on all 17s. A natural blackjack (Ace + ten-value card) pays 3:2; a normal win 1:1; a push returns your stake.",
+    "p3": "No split, insurance or surrender in this version.",
+    "p4": "The server holds every card and validates each move. The dealer's hidden card is never sent to the browser."
+  },
+  "dice-duel": {
+    "intro": "The server rolls one 100-sided die (1-100). You guess whether it lands under or over your target number.",
+    "p1": "Choose Under or Over, then slide the target. Your chance of hitting is shown immediately.",
+    "p2": "The smaller the chance, the larger the return — using the open formula below.",
+    "p3": "Returns are rounded down to whole coins."
+  }
+}

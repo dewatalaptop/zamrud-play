@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Tentang",
+  "title": "Tentang Zamrud Play",
+  "subtitle": "Platform hiburan simulasi bergaya kasino dengan koin virtual gratis.",
+  "s1": {
+    "title": "Apa ini?",
+    "body": "Zamrud Play adalah simulasi: permainan slot, roulette, blackjack, dan dadu yang berjalan sepenuhnya dengan koin virtual. Tujuannya hiburan dan eksplorasi — bukan taruhan uang."
+  },
+  "s2": {
+    "title": "Koin virtual",
+    "body": "Setiap pemain mendapat saldo awal gratis, hadiah harian, dan hadiah misi. Koin tidak bisa dibeli, ditarik, ditransfer ke pemain lain, atau ditukar dengan uang atau barang bernilai. Tidak ada layar pembayaran apa pun di aplikasi ini."
+  },
+  "s3": {
+    "title": "Hasil yang adil dan transparan",
+    "body": "Semua hasil dihasilkan server dengan pengacak kriptografis. Browser tidak pernah menentukan hasil atau pembayaran. Tabel pembayaran dan peluang ditampilkan, dan konfigurasi aturan diberi nomor versi sehingga riwayat lama tetap dapat dipahami. Peluang sama untuk semua pemain."
+  },
+  "s4": {
+    "title": "Personalisasi yang menghormati Anda",
+    "body": "Rekomendasi permainan dibuat dari preferensi yang Anda pilih sendiri dan riwayat singkat, dengan alasan yang selalu ditampilkan. Anda dapat mematikan atau mengatur ulangnya kapan saja. Personalisasi tidak pernah mengubah peluang, pembayaran, atau mendorong Anda bermain lebih lama."
+  },
+  "s5": {
+    "title": "Kontak",
+    "body": "Ada pertanyaan atau masukan? Setelah masuk, gunakan Pengaturan → Hubungi dukungan."
+  }
+}

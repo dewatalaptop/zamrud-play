@@ -1,0 +1,19 @@
+{
+  "s1": {
+    "title": "1 · Dompet virtual",
+    "body": "Saldo koin Anda ada di pojok atas. Koin gratis ini tidak bernilai uang. Anda mulai dengan saldo awal dan bisa mengambil hadiah harian."
+  },
+  "s2": {
+    "title": "2 · Permainan",
+    "body": "Buka Permainan, baca aturannya dulu, lalu mainkan. Semua hasil ditentukan server, jadi adil untuk semua pemain."
+  },
+  "s3": {
+    "title": "3 · Misi & pencapaian",
+    "body": "Selesaikan misi santai untuk koin gratis dan XP. Tidak ada batas waktu yang menekan, dan jeda tidak pernah menghukum Anda."
+  },
+  "s4": {
+    "title": "4 · Bermain sehat",
+    "body": "Atur pengingat, batas waktu harian, cooldown, atau ambil jeda kapan saja di Pengaturan. Itu sepenuhnya kendali Anda."
+  },
+  "finish": "Selesai"
+}

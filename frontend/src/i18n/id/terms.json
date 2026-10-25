@@ -1,0 +1,37 @@
+{
+  "eyebrow": "Legal",
+  "title": "Ketentuan Layanan",
+  "subtitle": "Aturan sederhana agar semua orang bersenang-senang dengan aman.",
+  "s1": {
+    "title": "Layanan hiburan simulasi",
+    "body": "Zamrud Play adalah hiburan simulasi. Seluruh saldo dan hasil bersifat virtual, tidak bernilai uang, dan tidak dapat diuangkan, dibeli, ditransfer, atau diperdagangkan."
+  },
+  "s2": {
+    "title": "Kelayakan",
+    "body": "Anda harus berusia 18 tahun ke atas dan memberikan informasi akun yang benar. Satu orang, satu akun."
+  },
+  "s3": {
+    "title": "Perilaku yang dilarang",
+    "body": "Dilarang memanipulasi permintaan untuk mengubah saldo atau hasil, menyalahgunakan bug, memakai bot, mengganggu layanan, atau mencoba mengakses data pemain lain."
+  },
+  "s4": {
+    "title": "Keadilan permainan",
+    "body": "Hasil ditentukan server dengan aturan terpublikasi yang sama untuk semua pemain. Versi aturan dapat diperbarui admin; ronde yang sedang berjalan tidak berubah aturannya."
+  },
+  "s5": {
+    "title": "Ketersediaan & data demo",
+    "body": "Layanan disediakan apa adanya. Pada lingkungan demo, data dapat di-reset sewaktu-waktu."
+  },
+  "s6": {
+    "title": "Penangguhan akun",
+    "body": "Kami dapat menangguhkan akun yang melanggar ketentuan. Setiap penangguhan dicatat beserta alasannya."
+  },
+  "s7": {
+    "title": "Batas tanggung jawab",
+    "body": "Karena tidak ada nilai uang yang terlibat, kami tidak bertanggung jawab atas hilangnya koin virtual. Kami berupaya menjaga layanan tetap andal dan aman."
+  },
+  "s8": {
+    "title": "Perubahan ketentuan",
+    "body": "Ketentuan dapat diperbarui; perubahan penting diumumkan di aplikasi."
+  }
+}

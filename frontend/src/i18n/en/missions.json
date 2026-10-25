@@ -1,0 +1,22 @@
+{
+  "title": "Missions",
+  "subtitle": "Relaxed missions to get to know the games. Rewards are free virtual coins and XP.",
+  "period": {
+    "DAILY": "Daily",
+    "WEEKLY": "Weekly",
+    "ONCE": "One-time"
+  },
+  "groups": {
+    "DAILY": "Daily missions",
+    "WEEKLY": "Weekly challenges",
+    "ONCE": "Getting-started missions"
+  },
+  "progress": "Progress",
+  "claimed": "Reward claimed",
+  "claim": "Claim reward",
+  "noPressure": "No pressuring deadlines.",
+  "emptyTitle": "No active missions",
+  "emptyText": "New missions will appear here.",
+  "claimedToast": "Mission reward received: +{n} virtual coins.",
+  "policy": "Missions never ask for higher stakes, continuous play or chasing losses. Completed missions can be claimed any time."
+}

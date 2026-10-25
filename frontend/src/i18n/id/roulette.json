@@ -1,0 +1,33 @@
+{
+  "colors": {
+    "red": "Merah",
+    "black": "Hitam",
+    "green": "Hijau"
+  },
+  "betsCount": "taruhan",
+  "payouts": "Pembayaran",
+  "betType": "Jenis taruhan",
+  "pockets": "Kantong menang",
+  "returns": "Pengembalian",
+  "kinds": {
+    "straight": "Angka",
+    "red": "Merah",
+    "black": "Hitam",
+    "green": "Hijau (0)",
+    "odd": "Ganjil",
+    "even": "Genap",
+    "low": "1–18",
+    "high": "19–36",
+    "dozen": "Lusinan"
+  },
+  "spinning": "Roda berputar…",
+  "landed": "Bola berhenti di {n} ({c}).",
+  "ready": "Pasang taruhan lalu putar roda.",
+  "chipValue": "Nilai chip",
+  "numbers": "Papan angka",
+  "dozen": "Lusinan {n}",
+  "yourBets": "Taruhan Anda",
+  "maxBets": "Maksimum {n} taruhan per putaran. Pilih lagi untuk membatalkan satu taruhan.",
+  "spin": "Putar roda",
+  "clear": "Hapus"
+}

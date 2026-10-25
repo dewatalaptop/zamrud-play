@@ -1,0 +1,26 @@
+{
+  "results": {
+    "BLACKJACK": "Blackjack!",
+    "WIN": "You win this round",
+    "DEALER_BUST": "Dealer went over 21",
+    "LOSE": "Dealer is higher",
+    "BUST": "Your total went over 21",
+    "PUSH": "Push — stake returned",
+    "DEALER_BLACKJACK": "Dealer has blackjack"
+  },
+  "doubled": "doubled",
+  "payoutRules": "A natural blackjack pays {bj}, a normal win 1:1, a push returns the stake. The dealer stands on all 17s. A {decks}-deck shoe is freshly shuffled every round.",
+  "dealer": "Dealer",
+  "player": "You",
+  "placeStake": "Pick a stake, then deal.",
+  "soft": "soft",
+  "yourTurn": "Your turn. Stake this round: {n} virtual coins.",
+  "ready": "Ready to deal.",
+  "hit": "Hit",
+  "stand": "Stand",
+  "double": "Double",
+  "doubleHint": "First two cards only: an equal extra stake and one more card.",
+  "deal": "Deal",
+  "serverNote": "The server keeps every card and validates each move. Reload the page? Your round will resume.",
+  "totals": "You {p} · Dealer {d}"
+}

@@ -1,0 +1,18 @@
+{
+  "default": "Dari katalog permainan",
+  "favoriteCategory": "Direkomendasikan karena Anda menyukai kategori {category}.",
+  "preferredTag": "Direkomendasikan karena Anda menyukai permainan bertema {tag}.",
+  "favorite": "Direkomendasikan karena ini salah satu favorit Anda.",
+  "playedOften": "Direkomendasikan karena sering Anda mainkan.",
+  "explore": "Coba sesuatu yang baru — Anda belum pernah memainkannya.",
+  "why": "Mengapa rekomendasi ini?",
+  "tags": {
+    "luck": "keberuntungan",
+    "quick": "cepat",
+    "visual": "visual",
+    "classic": "klasik",
+    "strategy": "strategi",
+    "cards": "kartu",
+    "numbers": "angka"
+  }
+}

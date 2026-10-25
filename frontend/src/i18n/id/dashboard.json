@@ -1,0 +1,18 @@
+{
+  "hello": "Halo, {name}!",
+  "subtitle": "Ringkasan permainan, misi, dan rekomendasi untuk Anda.",
+  "progress": "Kemajuan level",
+  "todayPlay": "Hari ini: {time} bermain",
+  "tourTitle": "Tur singkat (1 menit)",
+  "tourText": "Kenali dompet, permainan, dan fitur bermain sehat. Menyelesaikannya membuka misi dengan hadiah koin gratis.",
+  "tourStart": "Mulai tur",
+  "tourDone": "Tur selesai! Klaim hadiahnya di halaman Misi.",
+  "forYou": "Untuk Anda",
+  "recNote": "Rekomendasi berdasarkan preferensi Anda.",
+  "recOff": "Personalisasi dimatikan.",
+  "recManage": "Kelola",
+  "missionsTitle": "Misi untuk Anda",
+  "seeAll": "Lihat semua",
+  "allMissionsDone": "Semua misi sudah diklaim. Bagus!",
+  "recentTitle": "Ronde terakhir"
+}

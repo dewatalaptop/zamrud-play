@@ -1,0 +1,44 @@
+{
+  "eyebrow": "Simulation entertainment · free virtual coins",
+  "title": "Feel the casino atmosphere — without real money.",
+  "subtitle": "Zamrud Play is a simulation playground: spin slots, place roulette bets, outsmart blackjack and guess the dice with free virtual coins. Every result is computed by the server under open rules.",
+  "cta": "Start Playing Free",
+  "secondary": "View Games",
+  "demoBalance": "Free starting balance",
+  "featuredEyebrow": "Featured games",
+  "featuredTitle": "Four games, transparent rules",
+  "allGames": "All games",
+  "coinsEyebrow": "Virtual coins",
+  "coinsTitle": "Coins are just for fun",
+  "coinsBody": "Every player gets free virtual coins. Coins cannot be bought, withdrawn, sent to other players, or exchanged for anything of monetary value.",
+  "coins_free": {
+    "title": "Always free",
+    "text": "Starting balance, daily rewards and mission rewards cost nothing."
+  },
+  "coins_noMoney": {
+    "title": "No real money",
+    "text": "No deposits, withdrawals, payments or crypto."
+  },
+  "coins_noTransfer": {
+    "title": "Cannot be moved",
+    "text": "Coins are tied to your account and cannot be traded."
+  },
+  "coins_noPressure": {
+    "title": "No pressure",
+    "text": "No fake countdowns, play-more bonuses or loss-chasing nudges."
+  },
+  "progressEyebrow": "Progression",
+  "progressTitle": "Missions, levels and achievements",
+  "progressBody": "Complete relaxed missions, collect XP, level up and unlock badges. Nothing requires long play or higher stakes.",
+  "missionDemo": "Weekly mission",
+  "missionDemoText": "Play three different game types within a week.",
+  "badgeDemo": "Badges",
+  "levelDemo": "Level",
+  "statsDemoChart": "Rounds per day (example)",
+  "statsEyebrow": "Personal statistics",
+  "statsTitle": "Understand how you play",
+  "statsBody": "See a summary of rounds, favourite categories and session-length trends. Neutral wording: we show virtual balance change, not income.",
+  "rpTitle": "Healthy play is part of the design",
+  "rpBody": "Session reminders, daily time limits, voluntary breaks and cooldowns are available to everyone — and never weakened by personalisation.",
+  "rpCta": "Learn about healthy play"
+}

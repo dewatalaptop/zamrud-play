@@ -1,0 +1,33 @@
+{
+  "eyebrow": "Legal",
+  "title": "Privacy Policy",
+  "subtitle": "We collect as little data as possible, and you stay in control.",
+  "s1": {
+    "title": "Data we store",
+    "body": "Email, username, display name, a password hash (never the password itself), preferences, round and virtual-wallet records, session durations, and — only when personalisation is on — optional behavioural events such as games viewed."
+  },
+  "s2": {
+    "title": "What the data is used for",
+    "body": "Running your account and virtual wallet, showing your history and statistics, enforcing healthy-play features, recommending games, and keeping the service secure. We do not sell data or share it with advertisers."
+  },
+  "s3": {
+    "title": "What we do not do",
+    "body": "We do not use individual data to increase play intensity, target players after losses, infer psychological vulnerability for commercial purposes, alter game odds, or reduce break reminders."
+  },
+  "s4": {
+    "title": "Cookies",
+    "body": "We use a single essential cookie (__session) to keep you signed in. It is HttpOnly and is not used for ad tracking."
+  },
+  "s5": {
+    "title": "Your controls",
+    "body": "You can turn off personalisation, reset your recommendation profile and delete optional behavioural history any time in Profile. You can also delete your account in Settings."
+  },
+  "s6": {
+    "title": "Retention & deletion",
+    "body": "Optional behavioural events are deleted when you ask or turn off personalisation. When an account is deleted, personal data is anonymised; virtual coin transaction records are kept without identity for audit integrity. Admin audit logs are retained for accountability."
+  },
+  "s7": {
+    "title": "Security",
+    "body": "Passwords are hashed with scrypt, sessions use random tokens stored only as hashes, and every balance operation is performed by the server in an atomic transaction. No system is perfect; report vulnerabilities via support."
+  }
+}

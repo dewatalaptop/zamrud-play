@@ -1,0 +1,13 @@
+<!--
+  Self-made wave divider — sits between two sections (e.g. a dark .hero and
+  the plain-background content below it) to avoid a hard, flat seam. Uses
+  currentColor so it inherits whatever `color` is set on it or a parent —
+  set `color: var(--surface)` (or whatever the section BELOW it is) so the
+  wave reads as that section's color "flowing up" into the one above.
+  Usage: <div style="color: var(--surface)">...paste svg below...</div>
+  placed as the last child of the section above the seam, with
+  `position: relative; margin-bottom: -1px;` so no 1px gap shows.
+-->
+<svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+  <path d="M0,64 C240,110 480,20 720,48 C960,76 1200,108 1440,56 L1440,120 L0,120 Z" fill="currentColor"/>
+</svg>

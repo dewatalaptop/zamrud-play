@@ -1,0 +1,30 @@
+{
+  "independent": "Setiap ronde independen. Pola atau hasil sebelumnya tidak memprediksi hasil berikutnya, dan aturan yang sama berlaku untuk semua pemain.",
+  "virtual-slots": {
+    "intro": "Tiga gulungan berputar dan berhenti pada simbol yang dipilih server dengan bobot tetap (lihat tabel).",
+    "p1": "Tiga simbol sama membayar kelipatan terbesar sesuai tabel.",
+    "p2": "Tepat dua simbol sama membayar kelipatan kecil (dua ceri membayar 2×; pasangan Lonceng dan seterusnya mengembalikan taruhan 1×).",
+    "p3": "Semua simbol berbeda tidak membayar.",
+    "p4": "Kelipatan adalah total pengembalian termasuk taruhan, dalam bilangan bulat."
+  },
+  "euro-roulette": {
+    "intro": "Roda Eropa memiliki 37 kantong (0–36). Server memilih satu kantong secara acak seragam.",
+    "p1": "Anda boleh memasang hingga beberapa taruhan sekaligus; setiap taruhan dihitung sendiri.",
+    "p2": "Satu angka membayar 36× (termasuk taruhan), warna/ganjil-genap/rendah-tinggi 2×, lusinan 3×.",
+    "p3": "Kantong 0 (hijau) mengalahkan semua taruhan kecuali taruhan angka 0 atau hijau.",
+    "p4": "Peluang tiap taruhan dihitung eksak: kembalian rata-rata 97,3% (36/37)."
+  },
+  "blackjack-21": {
+    "intro": "Capai total kartu sedekat mungkin dengan 21 tanpa melewatinya, dan kalahkan tangan dealer.",
+    "p1": "Ambil kartu (Hit), berhenti (Stand), atau Gandakan (Double) pada dua kartu pertama: taruhan tambahan sama besar, tepat satu kartu lagi.",
+    "p2": "Dealer berhenti di semua 17. Blackjack alami (As + kartu 10) membayar 3:2; menang biasa 1:1; seri mengembalikan taruhan.",
+    "p3": "Tidak ada split, insurance, maupun surrender di versi ini.",
+    "p4": "Server memegang semua kartu dan memvalidasi setiap langkah. Kartu tertutup dealer tidak pernah dikirim ke browser."
+  },
+  "dice-duel": {
+    "intro": "Server melempar satu dadu 100 sisi (1–100). Anda menebak hasilnya di bawah atau di atas angka target.",
+    "p1": "Pilih Di bawah atau Di atas, lalu geser target. Peluang menang tampil langsung.",
+    "p2": "Makin kecil peluang, makin besar pengembalian — dengan rumus yang terbuka di bawah.",
+    "p3": "Pengembalian dibulatkan ke bawah ke bilangan bulat koin."
+  }
+}

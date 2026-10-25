@@ -1,0 +1,8 @@
+{
+  "timer": "Durasi sesi",
+  "timerHint": "Lama Anda bermain di sesi ini",
+  "reminderTitle": "Waktunya rehat sejenak?",
+  "reminderBody": "Anda sudah bermain selama {time} di sesi ini. Peregangan atau segelas air bisa membantu. Anda bebas melanjutkan kapan pun.",
+  "continue": "Lanjutkan",
+  "takeBreak": "Istirahat 15 menit"
+}

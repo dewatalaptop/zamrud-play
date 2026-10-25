@@ -1,0 +1,22 @@
+{
+  "balance": "Virtual coin balance",
+  "virtualOnly": "Virtual coins, no monetary value.",
+  "dailyClaimed": "Daily reward received: +{n} virtual coins.",
+  "claimDaily": "Claim daily reward +{n}",
+  "dailyDone": "Today's daily reward is claimed. See you tomorrow!",
+  "title": "Virtual Wallet",
+  "subtitle": "Your virtual coin balance and a record of every change. Everything is free and exists only inside this app.",
+  "dailyTitle": "Free daily reward",
+  "dailyText": "Claim {n} virtual coins once a day — no playing required.",
+  "promoTitle": "Demo promo code",
+  "promoText": "Have a demo promo code? Enter it here for free virtual coins (once per code).",
+  "promoCode": "Promo code",
+  "redeem": "Redeem",
+  "promoRedeemed": "Promo code accepted: +{n} virtual coins.",
+  "history": "Transaction history",
+  "filter": "Filter by transaction type",
+  "emptyTitle": "No transactions yet",
+  "emptyText": "Every balance change will be recorded here.",
+  "balanceAfter": "Balance",
+  "noTransfers": "There are no deposits, withdrawals, purchases or player-to-player transfers. Coins cannot be moved or cashed out."
+}

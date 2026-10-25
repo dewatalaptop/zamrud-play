@@ -1,0 +1,25 @@
+{
+  "eyebrow": "Catalogue",
+  "title": "Games",
+  "subtitle": "Four simulated games with free virtual coins. Every result is computed by the server and the rules are open to read.",
+  "filterCategory": "Filter by category",
+  "searchPlaceholder": "Search games…",
+  "empty": "No matching games.",
+  "notFound": "Game not found",
+  "play": "Play",
+  "playFree": "Start free",
+  "details": "Details",
+  "favorite": "Mark as favourite",
+  "unfavorite": "Remove from favourites",
+  "categories": {
+    "SLOTS": "Slots",
+    "WHEEL": "Wheel",
+    "CARDS": "Cards",
+    "DICE": "Dice"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Strategy needed"
+  }
+}

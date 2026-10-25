@@ -1,0 +1,14 @@
+{
+  "rules": "Rules",
+  "understood": "I understand",
+  "stakeRange": "Stake: {min} – {max} virtual coins.",
+  "virtualNote": "Every round uses virtual coins that have no monetary value.",
+  "configVersion": "Rules configuration version {v} (past results always follow the rules in force when they were played).",
+  "stake": "Stake (virtual coins)",
+  "recent": "Recent results",
+  "roundResult": "Round result",
+  "playAgain": "Play again",
+  "returned": "Returned",
+  "exit": "Exit",
+  "noPrediction": "Every round is independent: earlier results neither influence nor predict later ones."
+}

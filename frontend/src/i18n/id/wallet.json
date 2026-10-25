@@ -1,0 +1,22 @@
+{
+  "balance": "Saldo koin virtual",
+  "virtualOnly": "Koin virtual, tanpa nilai uang.",
+  "dailyClaimed": "Hadiah harian diterima: +{n} koin virtual.",
+  "claimDaily": "Ambil hadiah harian +{n}",
+  "dailyDone": "Hadiah harian hari ini sudah diambil. Sampai jumpa besok!",
+  "title": "Dompet Virtual",
+  "subtitle": "Saldo koin virtual dan riwayat setiap perubahan. Semua gratis dan hanya ada di dalam aplikasi ini.",
+  "dailyTitle": "Hadiah harian gratis",
+  "dailyText": "Ambil {n} koin virtual sekali sehari — tanpa syarat bermain.",
+  "promoTitle": "Kode promo demo",
+  "promoText": "Punya kode promo demo? Masukkan di sini untuk koin virtual gratis (sekali per kode).",
+  "promoCode": "Kode promo",
+  "redeem": "Tukar",
+  "promoRedeemed": "Kode promo diterima: +{n} koin virtual.",
+  "history": "Riwayat transaksi",
+  "filter": "Filter jenis transaksi",
+  "emptyTitle": "Belum ada transaksi",
+  "emptyText": "Setiap perubahan saldo akan tercatat di sini.",
+  "balanceAfter": "Saldo",
+  "noTransfers": "Tidak ada setoran, penarikan, pembelian, atau transfer antar pemain. Koin tidak dapat dipindahkan atau diuangkan."
+}
