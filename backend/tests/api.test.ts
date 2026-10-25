@@ -69,6 +69,20 @@ describe("registrasi & autentikasi", () => {
     for (let i = 0; i < 10; i++) last = (await c.post("/api/auth/login", { identifier: "brute@test.dev", password: "x-x-x-x-x-1" })).status;
     expect(last).toBe(429);
   });
+  it("Origin browser di belakang proxy (X-Forwarded-Host / ALLOWED_ORIGINS) diterima; Origin asing tetap ditolak", async () => {
+    const { base } = await import("./helpers");
+    const post = (extra: Record<string, string>) => fetch(base + "/api/auth/login", { method: "POST", headers: { "content-type": "application/json", "x-zamrud-csrf": "1", ...extra }, body: JSON.stringify({ identifier: "x@x.dev", password: "x" }) }).then((r) => r.status);
+    // tanpa proxy tepercaya, X-Forwarded-Host tidak dipercaya
+    expect(await post({ origin: "https://app.example", "x-forwarded-host": "app.example" })).toBe(403);
+    process.env.TRUST_PROXY = "1";
+    expect(await post({ origin: "https://app.example", "x-forwarded-host": "app.example" })).toBe(401); // lolos CSRF, gagal login
+    expect(await post({ origin: "https://evil.example", "x-forwarded-host": "app.example" })).toBe(403);
+    process.env.TRUST_PROXY = "0";
+    process.env.ALLOWED_ORIGINS = "https://app.example";
+    expect(await post({ origin: "https://app.example" })).toBe(401);
+    expect(await post({ origin: "https://evil.example" })).toBe(403);
+    delete process.env.ALLOWED_ORIGINS;
+  });
   it("CSRF: permintaan mengubah data tanpa header kustom / dengan Origin asing ditolak", async () => {
     const { c } = await newUser("csrf");
     const { base } = await import("./helpers");

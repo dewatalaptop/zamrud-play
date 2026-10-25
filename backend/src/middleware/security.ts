@@ -60,18 +60,27 @@ export function clearSessionCookie(res: Response) {
   res.append("Set-Cookie", `${COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`);
 }
 
+/**
+ * Origin sah = sama dengan Host, atau (bila ada proxy tepercaya) X-Forwarded-Host — di belakang Firebase Hosting,
+ * Host adalah host Cloud Function sedangkan Origin browser adalah domain Hosting — atau ada di ALLOWED_ORIGINS.
+ */
+export function originAllowed(req: Request, origin: string): boolean {
+  let host: string;
+  try { host = new URL(origin).host; } catch { return false; }
+  if (host === req.headers.host) return true;
+  if (Number(process.env.TRUST_PROXY ?? 0) > 0) {
+    const fwd = String(req.headers["x-forwarded-host"] ?? "").split(",")[0].trim();
+    if (fwd && host === fwd) return true;
+  }
+  return (process.env.ALLOWED_ORIGINS ?? "").split(",").map((x) => x.trim()).filter(Boolean).includes(origin);
+}
+
 /** Perlindungan CSRF: cookie SameSite=Lax + header kustom wajib + cek Origin untuk metode mengubah data. */
 export const csrfGuard: RequestHandler = (req, _res, next) => {
   if (["GET", "HEAD", "OPTIONS"].includes(req.method)) return next();
   if (req.headers["x-zamrud-csrf"] !== "1") return next(forbidden("CSRF_REJECTED"));
   const origin = req.headers.origin;
-  if (origin) {
-    try {
-      if (new URL(origin).host !== req.headers.host) return next(forbidden("CSRF_REJECTED"));
-    } catch {
-      return next(forbidden("CSRF_REJECTED"));
-    }
-  }
+  if (origin && !originAllowed(req, origin)) return next(forbidden("CSRF_REJECTED"));
   next();
 };
 
