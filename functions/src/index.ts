@@ -30,7 +30,7 @@ async function uploadDb(): Promise<void> {
   // Mode WAL: tulisan bisa masih di berkas -wal; paksa checkpoint agar berkas utama lengkap sebelum diunggah.
   const { db } = await import("./backend/db");
   db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
-  await admin.storage().bucket().upload(DB_PATH, { destination: DB_STORAGE_PATH });
+  await admin.storage().bucket().upload(DB_PATH, { destination: DB_STORAGE_PATH, resumable: false }); // sekali jalan, tanpa handshake resumable
 }
 
 let appPromise: Promise<Express> | null = null;
