@@ -8,7 +8,8 @@ import { useMotion } from "../../lib/hooks";
 import type { RoundView } from "../../lib/types";
 import { GameResultModal } from "../GameResultModal";
 import { useToast } from "../Toast";
-import { BalanceBar, StakePicker, useRound, type GameProps } from "./shared";
+import { WinFx } from "./WinFx";
+import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
 
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const SUITS = ["♠", "♥", "♦", "♣"];
@@ -44,17 +45,24 @@ export default function BlackjackGame({ game }: GameProps) {
   const [round, setRound] = useState<RoundView<BjView> | null>(null);
   const [acting, setActing] = useState(false);
   const [open, setOpen] = useState(false);
+  const [cel, setCel] = useState(false);
 
   // Lanjutkan ronde yang masih berjalan (mis. setelah muat ulang halaman).
   useEffect(() => {
     api.get<RoundView<BjView> | null>(`/games/${game.slug}/active`).then((r) => r && setRound(r)).catch(() => undefined);
   }, [game.slug]);
 
+  // Ronde selesai: kemenangan nyata (payout > total taruhan, termasuk double) dirayakan dulu; push/kalah langsung ke hasil.
+  const finish = useCallback(async (r: RoundView<BjView>) => {
+    if (r.payout > (r.view?.wagered ?? r.stake) && !m.reduced) { setCel(true); await wait(r.payout / (r.view?.wagered ?? r.stake) >= 25 ? 3200 : 2400); setCel(false); }
+    setOpen(true);
+  }, [m.reduced]);
+
   const deal = async () => {
     const r = await start({ stake });
     if (!r) return;
     setRound(r as RoundView<BjView>);
-    if (r.status === "COMPLETED") setOpen(true);
+    if (r.status === "COMPLETED") void finish(r as RoundView<BjView>);
   };
 
   const act = useCallback(async (type: "hit" | "stand" | "double") => {
@@ -63,12 +71,12 @@ export default function BlackjackGame({ game }: GameProps) {
     try {
       const r = await api.post<RoundView<BjView>>(`/sessions/${round.sessionId}/actions`, { clientActionId: newRequestId(), expectedSeq: round.seq, action: { type } });
       setRound(r); setBalance(r.balance);
-      if (r.status === "COMPLETED") setOpen(true);
+      if (r.status === "COMPLETED") void finish(r);
     } catch (e) {
       toastError(e);
       if (e instanceof ApiError && e.code === "STALE_ACTION") api.get<RoundView<BjView>>(`/sessions/${round.sessionId}`).then(setRound).catch(() => undefined);
     } finally { setActing(false); }
-  }, [round, acting, setBalance, toastError]);
+  }, [round, acting, setBalance, toastError, finish]);
 
   const v = round?.view;
   const active = round?.status === "ACTIVE";
@@ -77,7 +85,10 @@ export default function BlackjackGame({ game }: GameProps) {
   return (
     <div className="grid gap-4">
       <BalanceBar />
-      <div className="rounded-3xl border border-line p-4 sm:p-6" style={{ background: "radial-gradient(120% 120% at 50% 0%, hsl(155 55% 20%), hsl(155 45% 10%))" }}>
+      <div className="game-stage">
+        <div className="slot-title" aria-hidden="true">{t("blackjack.stageTitle")}</div>
+        {cel && round && <WinFx key={round.sessionId} payout={round.payout} stake={round.view?.wagered ?? round.stake} reduced={m.reduced} fmt={n}
+          label={{ win: t("slots.tierWin"), big: t("slots.tierBig"), mega: t("slots.tierMega") }} />}
         <div className="grid gap-6">
           <section aria-label={t("blackjack.dealer")}>
             <div className="mb-2 flex items-center justify-between text-sm text-emerald-100/80">
@@ -116,9 +127,9 @@ export default function BlackjackGame({ game }: GameProps) {
           <>
             <div>
               <p className="mb-2 text-sm font-semibold">{t("game.stake")}</p>
-              <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={starting} label={t("game.stake")} />
+              <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={starting || cel} label={t("game.stake")} />
             </div>
-            <button className="btn btn-primary btn-lg" disabled={starting} onClick={deal}><Play size={18} />{t("blackjack.deal")} · {n(stake)}</button>
+            <button className="btn btn-primary btn-lg" disabled={starting || cel} onClick={deal}><Play size={18} />{t("blackjack.deal")} · {n(stake)}</button>
           </>
         )}
         <p className="text-xs text-faint">{t("blackjack.serverNote")}</p>
