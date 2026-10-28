@@ -12,6 +12,11 @@
     "DIAMOND": "Berlian",
     "SEVEN": "Tujuh"
   },
+  "title": "Zamrud Slots",
+  "lastWin": "Menang terakhir",
+  "tierWin": "Menang!",
+  "tierBig": "Menang besar!",
+  "tierMega": "Mega!",
   "spinning": "Gulungan berputar…",
   "matched": "Kombinasi cocok! Pengembalian {mult}× taruhan.",
   "refunded": "Taruhan dikembalikan (1×). Saldo Anda tidak berubah.",

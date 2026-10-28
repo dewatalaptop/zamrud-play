@@ -12,6 +12,11 @@
     "DIAMOND": "Diamond",
     "SEVEN": "Seven"
   },
+  "title": "Zamrud Slots",
+  "lastWin": "Last win",
+  "tierWin": "Win!",
+  "tierBig": "Big win!",
+  "tierMega": "Mega!",
   "spinning": "Reels spinning…",
   "matched": "A match! Returned {mult}x your stake.",
   "refunded": "Stake returned (1x). Your balance did not change.",

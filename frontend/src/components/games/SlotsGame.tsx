@@ -5,6 +5,7 @@ import { useI18n } from "../../i18n";
 import { useMotion } from "../../lib/hooks";
 import { GameResultModal } from "../GameResultModal";
 import { SymbolIcon } from "./art";
+import { WinFx } from "./WinFx";
 import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
 
 const CELL = 128;
@@ -29,7 +30,7 @@ function Reel({ symbols, target, spinning, delay, win, motionOn }: { symbols: st
   return (
     <div className={`reel ${win ? "reel-win" : ""}`} role="img" aria-label={target}>
       <motion.div className="reel-strip" animate={controls} initial={{ y: 0 }}>
-        {strip.map((s, i) => <div key={i} className="reel-cell"><SymbolIcon id={s} size={84} /></div>)}
+        {strip.map((s, i) => <div key={i} className="reel-cell"><SymbolIcon id={s} size={92} /></div>)}
       </motion.div>
     </div>
   );
@@ -45,6 +46,7 @@ export default function SlotsGame({ game }: GameProps) {
   const [reels, setReels] = useState<string[]>(["CHERRY", "BELL", "LEMON"]);
   const [spin, setSpin] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
   const [result, setResult] = useState<{ stake: number; payout: number; reels: string[]; mult: number } | null>(null);
   const [open, setOpen] = useState(false);
   const [recent, setRecent] = useState<{ reels: string[]; net: number }[]>([]);
@@ -59,6 +61,7 @@ export default function SlotsGame({ game }: GameProps) {
     const mult = r.stake ? r.payout / r.stake : 0;
     setResult({ stake: r.stake, payout: r.payout, reels: out, mult });
     setRecent((x) => [{ reels: out, net: (r.net ?? 0) }, ...x].slice(0, 6));
+    if (mult > 1 && !m.reduced) { setCelebrating(true); await wait(mult >= 25 ? 3200 : 2400); setCelebrating(false); }
     setOpen(true);
   };
   const win = !animating && !!result && result.payout > result.stake; // pengembalian = taruhan bukan kemenangan
@@ -67,19 +70,29 @@ export default function SlotsGame({ game }: GameProps) {
     <div className="grid gap-4">
       <BalanceBar />
       <div className="slot-machine">
-        <div className="grid grid-cols-3 gap-3" aria-live="polite">
-          {reels.map((s, i) => <Reel key={i} symbols={symbols} target={s} spinning={spin} delay={i * 0.35} win={win} motionOn={!m.reduced} />)}
+        <div className="slot-title" aria-hidden="true"><SymbolIcon id="DIAMOND" size={20} />{t("slots.title")}<SymbolIcon id="DIAMOND" size={20} /></div>
+        <div className={`slot-reels ${win ? "is-win" : ""}`}>
+          <div className="slot-payline" aria-hidden="true" />
+          <div className="grid grid-cols-3 gap-3" aria-live="polite">
+            {reels.map((s, i) => <Reel key={i} symbols={symbols} target={s} spinning={spin} delay={i * 0.35} win={win} motionOn={!m.reduced} />)}
+          </div>
         </div>
-        <p className="mt-3 min-h-5 text-center text-sm text-muted" aria-live="polite">
+        <div className="slot-hud">
+          <div><small>{t("game.stake")}</small><b>{n(stake)}</b></div>
+          <div><small>{t("slots.lastWin")}</small><b>{!animating && result && result.payout > result.stake ? n(result.payout) : "—"}</b></div>
+        </div>
+        {win && result && <WinFx key={spin} payout={result.payout} stake={result.stake} reduced={m.reduced} fmt={n}
+          label={{ win: t("slots.tierWin"), big: t("slots.tierBig"), mega: t("slots.tierMega") }} />}
+        <p className="slot-msg mt-3 min-h-5 text-center text-sm" aria-live="polite">
           {animating ? t("slots.spinning") : result ? (result.payout > result.stake ? t("slots.matched", { mult: result.mult }) : result.payout === result.stake ? t("slots.refunded") : t("slots.noMatch")) : t("slots.ready")}
         </p>
       </div>
       <div className="card grid gap-4">
         <div>
           <p className="mb-2 text-sm font-semibold">{t("game.stake")}</p>
-          <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating} label={t("game.stake")} />
+          <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating || celebrating} label={t("game.stake")} />
         </div>
-        <button className="btn btn-primary btn-lg" onClick={spinNow} disabled={busy || animating}><Play size={18} />{t("slots.spin")} · {n(stake)}</button>
+        <button className="btn btn-primary btn-lg" onClick={spinNow} disabled={busy || animating || celebrating}><Play size={18} />{t("slots.spin")} · {n(stake)}</button>
       </div>
       {recent.length > 0 && (
         <section className="card" aria-label={t("game.recent")}>
