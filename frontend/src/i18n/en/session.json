@@ -3,7 +3,7 @@
   "timerHint": "How long you have played this session",
   "reminderTitle": "Time for a short pause?",
   "reminderBody": "You have played for {time} this session. A stretch or a glass of water can help. You are free to continue whenever you like.",
-  "reminderStats": "This session: {rounds} rounds, virtual coin balance change {net}.",
+  "reminderStats": "Rounds this session: {rounds}; virtual coin balance change {net}.",
   "continue": "Continue",
   "takeBreak": "Take a 15-minute break"
 }

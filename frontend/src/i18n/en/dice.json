@@ -3,6 +3,7 @@
   "under": "Under",
   "over": "Over",
   "hit": "Correct guess",
+  "hitRefund": "Correct guess, but your stake was only returned (balance unchanged).",
   "miss": "Missed guess",
   "formula": "Return = floor(stake x {num} / winning numbers) ({sides}-sided die), rounded down. No hidden numbers.",
   "ready": "Set your guess, then roll.",

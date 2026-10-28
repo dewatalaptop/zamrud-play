@@ -274,6 +274,28 @@ describe("blackjack (server-authoritative)", () => {
     expect(done.data.balance).toBe(9900 + done.data.payout);
   });
 
+  it("net sesi: ronde blackjack yang melintasi sesi dihitung utuh (payout - taruhan) di sesi tempat ia selesai", async () => {
+    const { c } = await newUser("bjx");
+    setRng(zero);
+    if (handValue([cardsDealt.p1, cardsDealt.p2]).total === 21 || handValue([cardsDealt.d1, cardsDealt.d2]).total === 21) return;
+    await c.post("/api/auth/heartbeat");
+    const start = await c.post("/api/games/blackjack-21/sessions", { requestId: rid(), input: { stake: 100 } });
+    expect(start.data.status).toBe("ACTIVE");
+    advanceClock(11 * 60_000); // diam > IDLE_MS: sesi lama berakhir
+    const mid = await c.post("/api/auth/heartbeat");
+    expect(mid.data.sessionRounds).toBe(0); // ronde belum selesai: belum dihitung, tak ada "−100" menyesatkan
+    expect(mid.data.sessionNet).toBe(0);
+    const done = await c.post(`/api/sessions/${start.data.sessionId}/actions`, { clientActionId: rid(), expectedSeq: 0, action: { type: "stand" } });
+    expect(done.data.status).toBe("COMPLETED");
+    const end = await c.post("/api/auth/heartbeat");
+    expect(end.data.sessionRounds).toBe(1);
+    expect(end.data.sessionNet).toBe(done.data.payout - 100); // bukan hanya payout
+  });
+  it("query net sesi memakai indeks per-pemain (bukan pindai ledger seluruh platform)", () => {
+    const plan = db.prepare("EXPLAIN QUERY PLAN SELECT COUNT(*) n, COALESCE(SUM(net),0) net FROM game_results WHERE user_id=? AND created_at>=?")
+      .all("u", "2000-01-01").map((r: any) => r.detail).join(" ");
+    expect(plan).toMatch(/idx_gr_user_time/);
+  });
   it("aksi dengan seq usang ditolak; kartu buatan sendiri ditolak; ronde kedua saat aktif ditolak", async () => {
     const { c } = await newUser("bj2");
     setRng(zero);

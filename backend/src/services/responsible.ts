@@ -116,19 +116,21 @@ export function heartbeat(userId: string) {
     }
     const settings = getSettings(userId);
     const today = todaySeconds(userId);
-    const cur = one<{ started_at: string; games_played: number }>(
-      "SELECT started_at, games_played FROM session_summaries WHERE user_id=? AND ended_at IS NULL ORDER BY started_at DESC LIMIT 1", userId
+    // Reality check: hanya ronde yang SELESAI sejak sesi ini dimulai (net = payout - total taruhan ronde itu,
+    // termasuk double). Memakai game_results (idx_gr_user_time) agar per-pemain & murah; ronde yang melintasi
+    // sesi dihitung utuh di sesi tempat ia selesai, ronde yang masih berjalan belum dihitung.
+    const cur = one<{ started_at: string }>(
+      "SELECT started_at FROM session_summaries WHERE user_id=? AND ended_at IS NULL ORDER BY started_at DESC LIMIT 1", userId
     );
-    const sessionNet = cur
-      ? one<{ s: number }>(
-          "SELECT COALESCE(SUM(amount),0) s FROM wallet_transactions WHERE user_id=? AND type IN ('GAME_STAKE','GAME_PAYOUT') AND created_at>=?",
-          userId, cur.started_at
-        )!.s
-      : 0;
+    const agg = cur
+      ? one<{ n: number; net: number }>(
+          "SELECT COUNT(*) n, COALESCE(SUM(net),0) net FROM game_results WHERE user_id=? AND created_at>=?", userId, cur.started_at
+        )!
+      : { n: 0, net: 0 };
     return {
       sessionSeconds,
-      sessionRounds: cur?.games_played ?? 0,
-      sessionNet,
+      sessionRounds: agg.n,
+      sessionNet: agg.net,
       todaySeconds: today,
       reminderMinutes: settings.reminderMinutes,
       dailyLimitMinutes: settings.dailyLimitMinutes,

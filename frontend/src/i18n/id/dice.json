@@ -3,6 +3,7 @@
   "under": "Di bawah",
   "over": "Di atas",
   "hit": "Tebakan tepat",
+  "hitRefund": "Tebakan tepat, tetapi taruhan hanya dikembalikan (saldo tidak berubah).",
   "miss": "Tebakan meleset",
   "formula": "Pengembalian = ⌊taruhan × {num} ÷ jumlah angka menang⌋ (dadu {sides} sisi), dibulatkan ke bawah. Tidak ada angka rahasia.",
   "ready": "Atur tebakan lalu lempar.",

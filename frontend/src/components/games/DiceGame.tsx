@@ -18,8 +18,8 @@ export default function DiceGame({ game }: GameProps) {
   const [target, setTarget] = useState(50);
   const [shown, setShown] = useState<number | null>(null);
   const [rolling, setRolling] = useState(false);
-  const [last, setLast] = useState<{ roll: number; win: boolean; stake: number; payout: number; mode: string; target: number } | null>(null);
-  const [recent, setRecent] = useState<{ roll: number; win: boolean; mode: string; target: number }[]>([]);
+  const [last, setLast] = useState<{ roll: number; win: boolean; profit: boolean; stake: number; payout: number; mode: string; target: number } | null>(null);
+  const [recent, setRecent] = useState<{ roll: number; win: boolean; profit: boolean; mode: string; target: number }[]>([]);
   const [open, setOpen] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval>>();
   useEffect(() => () => clearInterval(timer.current), []);
@@ -40,9 +40,10 @@ export default function DiceGame({ game }: GameProps) {
     if (!m.reduced) await wait(700);
     const v = r.view;
     const win = r.payout > 0 && ((mode === "under" && v.roll < target) || (mode === "over" && v.roll > target));
+    const profit = win && r.payout > r.stake; // pengembalian = taruhan bukan keuntungan
     setShown(v.roll); setRolling(false);
-    setLast({ roll: v.roll, win, stake: r.stake, payout: r.payout, mode, target });
-    setRecent((x) => [{ roll: v.roll, win, mode, target }, ...x].slice(0, 8));
+    setLast({ roll: v.roll, win, profit, stake: r.stake, payout: r.payout, mode, target });
+    setRecent((x) => [{ roll: v.roll, win, profit, mode, target }, ...x].slice(0, 8));
     setOpen(true);
   };
 
@@ -53,7 +54,7 @@ export default function DiceGame({ game }: GameProps) {
         <div className={`die ${rolling && !m.reduced ? "pulse-soft" : ""}`} style={{ width: 120, height: 120, fontSize: "3rem" }} aria-live="polite" aria-label={shown ? `${t("dice.roll")} ${shown}` : t("dice.ready")}>
           {shown ?? "?"}
         </div>
-        <p className="text-sm text-muted">{rolling ? t("dice.rolling") : last ? (last.win ? t("dice.hit") : t("dice.miss")) : t("dice.ready")}</p>
+        <p className="text-sm text-muted">{rolling ? t("dice.rolling") : last ? (last.win ? (last.profit ? t("dice.hit") : t("dice.hitRefund")) : t("dice.miss")) : t("dice.ready")}</p>
       </div>
 
       <div className="card grid gap-5">
@@ -83,7 +84,7 @@ export default function DiceGame({ game }: GameProps) {
         <section className="card" aria-label={t("game.recent")}>
           <h3 className="mb-3 text-sm font-bold">{t("game.recent")}</h3>
           <ul className="flex flex-wrap gap-2">
-            {recent.map((r, i) => <li key={i} className={`chip ${r.win ? "!bg-[var(--success-bg)] !text-ok" : ""}`}><span className="num font-bold">{r.roll}</span> · {t(`dice.${r.mode}`)} {r.target}</li>)}
+            {recent.map((r, i) => <li key={i} className={`chip ${r.profit ? "!bg-[var(--success-bg)] !text-ok" : ""}`}><span className="num font-bold">{r.roll}</span> · {t(`dice.${r.mode}`)} {r.target}</li>)}
           </ul>
         </section>
       )}
