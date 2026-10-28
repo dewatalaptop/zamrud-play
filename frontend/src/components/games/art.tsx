@@ -3,7 +3,7 @@ import { SymbolIcon } from "./symbols";
 export { SymbolIcon };
 
 /** Ilustrasi kartu game (CSS/SVG orisinal). */
-const CARD_IMG: Record<string, string> = { "virtual-slots": "card-slots", "euro-roulette": "card-roulette", "dice-duel": "card-dice", "blackjack-21": "card-blackjack" };
+const CARD_IMG: Record<string, string> = { "virtual-slots": "card-slots", "zamrud-slots-5": "card-slots", "euro-roulette": "card-roulette", "dice-duel": "card-dice", "blackjack-21": "card-blackjack" };
 export function GameArt({ slug, className = "" }: { slug: string; className?: string }) {
   const img = CARD_IMG[slug];
   if (img) return <img src={`/img/${img}.webp`} alt="" width={640} height={357} loading="lazy" decoding="async" className={`block object-cover ${className}`} />;

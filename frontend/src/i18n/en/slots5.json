@@ -1,0 +1,15 @@
+{
+  "title": "Zamrud 5×3",
+  "lines": "10 lines",
+  "matched": "Win! Return {mult}× your stake.",
+  "partial": "Part of your stake came back: {payout} of {stake} coins. Your balance went down.",
+  "winLine": "Line {line}: {symbol} ×{count} = {coins}",
+  "scatterWin": "Scatter ×{count} = {coins}",
+  "more": "+{n} more",
+  "lineBet": "Stake per line",
+  "payHeader": "Line pays (× stake per line)",
+  "scatterTable": "Scatter (× total stake, anywhere)",
+  "rtpNote": "Theoretical average return: {rtp}% (computed exactly: lines {lines}% + scatter {scatter}%).",
+  "rowsLabel": "Reel result, 5 columns, 3 rows",
+  "summary": "{wins} lines"
+}

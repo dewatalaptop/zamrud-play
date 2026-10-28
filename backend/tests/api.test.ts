@@ -201,6 +201,21 @@ describe("game: slots / roulette / dice", () => {
     await Promise.all(Array.from({ length: 10 }, () => c.post("/api/games/virtual-slots/sessions", body)));
     expect(one<any>("SELECT COUNT(*) c FROM game_sessions WHERE user_id=?", id)!.c).toBe(1);
   });
+  it("slots 5×3: taruhan bukan kelipatan garis ditolak; payout & ledger konsisten; requestId sama idempoten", async () => {
+    const { c, id } = await newUser("g5x3");
+    expect((await c.post("/api/games/zamrud-slots-5/sessions", slotsInput(15))).status).toBe(400);
+    expect(one<any>("SELECT COUNT(*) c FROM game_sessions WHERE user_id=?", id)!.c).toBe(0); // ditolak sebelum memotong saldo
+    setRng(sequenceRng(Array(15).fill(0))); // seluruh layar CHERRY: 10 garis × 5 simbol
+    const body = slotsInput(100);
+    const r = await c.post("/api/games/zamrud-slots-5/sessions", body);
+    expect(r.status).toBe(200);
+    expect(r.data.payout).toBe(10 * 50 * 10);
+    expect(r.data.view.wins).toHaveLength(10);
+    expect(r.data.view.grid).toHaveLength(5);
+    const again = await c.post("/api/games/zamrud-slots-5/sessions", body);
+    expect(again.data.sessionId).toBe(r.data.sessionId);
+    expect(one<any>("SELECT COUNT(*) c FROM wallet_transactions WHERE type='GAME_STAKE' AND game_session_id=?", r.data.sessionId)!.c).toBe(1);
+  });
   it("roulette: payout total benar; dice: pembulatan ke bawah", async () => {
     const { c } = await newUser("rd");
     setRng(sequenceRng([7]));

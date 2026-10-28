@@ -14,6 +14,7 @@ function Preview({ slug, p }: { slug: string; p: any }) {
   const { t } = useI18n();
   if (!p) return null;
   if (slug === "virtual-slots") return <p className="text-xs text-muted">{t("slots.rtpNote", { rtp: p.rtp.percent })} · {p.symbols.length} {t("slots.symbol").toLowerCase()}</p>;
+  if (slug === "zamrud-slots-5") return <p className="text-xs text-muted">{t("slots5.rtpNote", { rtp: p.rtp.percent, lines: p.rtp.lines, scatter: p.rtp.scatter })}</p>;
   if (slug === "euro-roulette") return <p className="text-xs text-muted">RTP: {p.kinds.map((k: any) => `${k.kind} ${k.rtpPercent}%`).join(" · ")}</p>;
   if (slug === "dice-duel") return <p className="text-xs text-muted">{t("admin.games.maxRtp", { n: p.maxRtpPercent })}</p>;
   return <p className="text-xs text-muted">{t("blackjack.payoutRules", { bj: p.blackjackPays, decks: p.decks })}</p>;

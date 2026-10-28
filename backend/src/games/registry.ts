@@ -1,11 +1,13 @@
 import type { GameEngine } from "./types";
 import { slotsEngine } from "./slots";
+import { slots5Engine } from "./slots5";
 import { rouletteEngine } from "./roulette";
 import { blackjackEngine } from "./blackjack";
 import { diceEngine } from "./dice";
 
 export const engines: Record<string, GameEngine> = {
   [slotsEngine.slug]: slotsEngine,
+  [slots5Engine.slug]: slots5Engine,
   [rouletteEngine.slug]: rouletteEngine,
   [blackjackEngine.slug]: blackjackEngine,
   [diceEngine.slug]: diceEngine,
@@ -20,6 +22,12 @@ export const catalog = [
     nameId: "Slot Virtual", nameEn: "Virtual Slots",
     descId: "Putar tiga gulungan bersimbol. Hasil ditentukan server dengan bobot simbol yang transparan.",
     descEn: "Spin three symbol reels. The server decides every result with a transparent symbol weighting.",
+  },
+  {
+    slug: slots5Engine.slug, category: "SLOTS", kind: "INSTANT", tags: ["luck", "visual"], difficulty: "medium", sortOrder: 5,
+    nameId: "Zamrud Slots 5×3", nameEn: "Zamrud Slots 5×3",
+    descId: "Lima gulungan, 10 garis bayar, simbol WILD dan SCATTER. Tanpa putaran gratis atau bonus; tiap putaran berdiri sendiri.",
+    descEn: "Five reels, 10 paylines, WILD and SCATTER symbols. No free spins or bonuses; every spin stands alone.",
   },
   {
     slug: rouletteEngine.slug, category: "WHEEL", kind: "INSTANT", tags: ["luck", "classic", "visual"], difficulty: "medium", sortOrder: 2,

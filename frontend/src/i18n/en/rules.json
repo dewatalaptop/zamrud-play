@@ -7,6 +7,13 @@
     "p3": "All different symbols pay nothing.",
     "p4": "Multipliers are total returns including the stake, in whole numbers."
   },
+  "zamrud-slots-5": {
+    "intro": "Five reels and three rows spin; every cell is chosen by the server using fixed weights (see the table). There are 10 fixed paylines.",
+    "p1": "Three, four, or five matching symbols in a row from the first reel on a line pay as shown (× stake per line = stake ÷ 10).",
+    "p2": "WILD substitutes for every symbol except SCATTER. SCATTER pays anywhere on screen (3, 4, or 5) as a multiple of your total stake.",
+    "p3": "There are no free spins or bonuses: every spin stands alone. Stakes must be multiples of 10.",
+    "p4": "Payouts are total returns including the stake, in whole numbers. Highlights and effects only appear when the total return exceeds your stake."
+  },
   "euro-roulette": {
     "intro": "The European wheel has 37 pockets (0-36). The server picks one pocket with uniform randomness.",
     "p1": "You may place several bets at once; each bet is settled on its own.",

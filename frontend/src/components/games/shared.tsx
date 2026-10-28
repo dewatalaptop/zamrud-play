@@ -1,4 +1,6 @@
 import { useCallback, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { setSoundEnabled, useSoundEnabled } from "../../lib/sound";
 import { api, ApiError, newRequestId } from "../../lib/api";
 import { useAuth } from "../../auth/AuthProvider";
 import { useI18n } from "../../i18n";
@@ -21,13 +23,24 @@ export function StakePicker({ steps, value, onChange, disabled, label }: { steps
   );
 }
 
+/** Tombol suara efek: bawaan mati, pilihan disimpan di perangkat ini. */
+export function SoundToggle() {
+  const { t } = useI18n();
+  const on = useSoundEnabled();
+  return (
+    <button type="button" className="btn btn-ghost btn-sm" aria-pressed={on} onClick={() => setSoundEnabled(!on)} title={t(on ? "game.soundOn" : "game.soundOff")}>
+      {on ? <Volume2 size={16} aria-hidden="true" /> : <VolumeX size={16} aria-hidden="true" />}<span>{t(on ? "game.soundOn" : "game.soundOff")}</span>
+    </button>
+  );
+}
+
 export function BalanceBar({ extra }: { extra?: React.ReactNode }) {
   const { me } = useAuth();
   const { t, n } = useI18n();
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-surface-2 px-4 py-3">
       <p className="flex items-center gap-2 text-sm"><CoinIcon size={20} /><span className="text-muted">{t("wallet.balance")}</span><strong className="num text-lg">{n(me?.balance ?? 0)}</strong></p>
-      {extra}
+      <div className="flex items-center gap-2">{extra}<SoundToggle /></div>
     </div>
   );
 }

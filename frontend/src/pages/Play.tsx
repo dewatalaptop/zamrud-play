@@ -14,6 +14,7 @@ import { Disclosure } from "../components/Layout";
 // Muat kode game hanya saat dibutuhkan (lazy loading).
 const Games: Record<string, React.LazyExoticComponent<React.ComponentType<{ game: GameInfo }>>> = {
   "virtual-slots": lazy(() => import("../components/games/SlotsGame")),
+  "zamrud-slots-5": lazy(() => import("../components/games/SlotsGrid")),
   "euro-roulette": lazy(() => import("../components/games/RouletteGame")),
   "blackjack-21": lazy(() => import("../components/games/BlackjackGame")),
   "dice-duel": lazy(() => import("../components/games/DiceGame")),

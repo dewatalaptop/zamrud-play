@@ -279,3 +279,19 @@ html, body { overflow-x: clip; }
 @keyframes haloPulse { 0%, 100% { opacity: .25; transform: scale(.9) } 50% { opacity: .9; transform: scale(1.08) } }
 @media (prefers-reduced-motion: reduce) { .slot-bgfx img, .reel-thud-a, .reel-thud-b, .reel-cell.rare::before { animation: none; } }
 :root[data-motion="reduced"] .reel-cell.rare::before, :root[data-motion="off"] .reel-cell.rare::before { animation: none; }
+
+/* ===== Zamrud Slots 5×3 ===== */
+.greels { --cs: min(88px, calc((100vw - 104px) / 5)); display: grid; gap: 6px; }
+.greel { position: relative; height: calc(var(--cs) * 3); overflow: hidden; border-radius: 12px; background: linear-gradient(180deg, #0b1220, #1b2540 50%, #0b1220); box-shadow: inset 0 0 0 1px hsl(0 0% 100% / .08), inset 0 12px 14px -10px rgb(0 0 0 / .8), inset 0 -12px 14px -10px rgb(0 0 0 / .8); }
+.greel-strip { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; will-change: transform; }
+.greel-cell { position: relative; height: var(--cs); display: grid; place-items: center; transition: opacity .25s, transform .25s; }
+.greel-cell svg { width: 88%; height: 88%; position: relative; }
+.greel-cell.rare::before { content: ""; position: absolute; width: 74%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, hsl(43 96% 60% / .45), transparent 68%); animation: haloPulse 2.8s ease-in-out infinite; pointer-events: none; }
+.gcell-dim { opacity: .45; }
+.gcell-win { z-index: 1; }
+.gcell-win::after { content: ""; position: absolute; inset: 2px; border-radius: 10px; box-shadow: 0 0 0 2px hsl(43 96% 56%), 0 0 16px hsl(43 96% 56% / .6); pointer-events: none; }
+.gcell-win svg { animation: symPop .9s ease-in-out 2; }
+.gl-sub { display: block; font-size: .62rem; color: hsl(43 80% 75% / .85); }
+.gl-wins { margin-top: 8px; display: grid; gap: 2px; font-size: .78rem; text-align: center; color: hsl(43 80% 85%); list-style: none; padding: 0; }
+@media (prefers-reduced-motion: reduce) { .greel-cell.rare::before, .gcell-win svg { animation: none; } .greel-cell { transition: none; } }
+:root[data-motion="reduced"] .greel-cell.rare::before, :root[data-motion="off"] .greel-cell.rare::before, :root[data-motion="reduced"] .gcell-win svg, :root[data-motion="off"] .gcell-win svg { animation: none; }

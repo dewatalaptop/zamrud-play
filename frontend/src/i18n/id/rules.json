@@ -7,6 +7,13 @@
     "p3": "Semua simbol berbeda tidak membayar.",
     "p4": "Kelipatan adalah total pengembalian termasuk taruhan, dalam bilangan bulat."
   },
+  "zamrud-slots-5": {
+    "intro": "Lima gulungan dan tiga baris berputar; setiap sel dipilih server dengan bobot tetap (lihat tabel). Ada 10 garis bayar tetap.",
+    "p1": "Tiga, empat, atau lima simbol sama berurutan dari gulungan pertama pada satu garis membayar sesuai tabel (kali taruhan per garis = taruhan ÷ 10).",
+    "p2": "WILD menggantikan semua simbol kecuali SCATTER. SCATTER membayar di mana saja di layar (3, 4, atau 5 buah) sebagai kelipatan taruhan total.",
+    "p3": "Tidak ada putaran gratis atau bonus: setiap putaran berdiri sendiri. Taruhan harus kelipatan 10.",
+    "p4": "Pembayaran adalah total pengembalian termasuk taruhan, dalam bilangan bulat. Sorotan dan efek hanya muncul bila total pengembalian melebihi taruhan."
+  },
   "euro-roulette": {
     "intro": "Roda Eropa memiliki 37 kantong (0–36). Server memilih satu kantong secara acak seragam.",
     "p1": "Anda boleh memasang hingga beberapa taruhan sekaligus; setiap taruhan dihitung sendiri.",

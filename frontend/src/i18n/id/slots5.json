@@ -1,0 +1,15 @@
+{
+  "title": "Zamrud 5×3",
+  "lines": "10 garis",
+  "matched": "Menang! Pengembalian {mult}× taruhan.",
+  "partial": "Sebagian taruhan kembali: {payout} dari {stake} koin. Saldo berkurang.",
+  "winLine": "Garis {line}: {symbol} ×{count} = {coins}",
+  "scatterWin": "Scatter ×{count} = {coins}",
+  "more": "+{n} lainnya",
+  "lineBet": "Taruhan per garis",
+  "payHeader": "Pembayaran garis (kali taruhan per garis)",
+  "scatterTable": "Scatter (kali taruhan total, di mana saja)",
+  "rtpNote": "Pengembalian rata-rata teoretis: {rtp}% (dihitung eksak: garis {lines}% + scatter {scatter}%).",
+  "rowsLabel": "Hasil gulungan, 5 kolom, 3 baris",
+  "summary": "{wins} garis"
+}

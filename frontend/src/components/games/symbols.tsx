@@ -9,10 +9,12 @@ const SKIN: Record<string, { a: string; b: string; glow: string }> = {
   STAR: { a: "#c084fc", b: "#4c1d95", glow: "#a855f7" },
   DIAMOND: { a: "#67e8f9", b: "#155e75", glow: "#22d3ee" },
   SEVEN: { a: "#f87171", b: "#7f1d1d", glow: "#ef4444" },
+  WILD: { a: "#34d399", b: "#064e3b", glow: "#10b981" },
+  SCATTER: { a: "#f472b6", b: "#831843", glow: "#ec4899" },
 };
 
 /** Siluet menurut tingkat nilai: rendah = kotak membulat, menengah = bulat, tinggi = segi delapan bermahkota. */
-export const symbolTier = (id: string): "low" | "mid" | "high" => (["STAR", "DIAMOND", "SEVEN"].includes(id) ? "high" : ["BELL", "CLOVER"].includes(id) ? "mid" : "low");
+export const symbolTier = (id: string): "low" | "mid" | "high" => (["STAR", "DIAMOND", "SEVEN", "WILD", "SCATTER"].includes(id) ? "high" : ["BELL", "CLOVER"].includes(id) ? "mid" : "low");
 
 function Glyph({ id }: { id: string }) {
   switch (id) {
@@ -61,6 +63,20 @@ function Glyph({ id }: { id: string }) {
       return (<g>
         <path d="M17 15h30v7L31 50H21l16-27H17Z" fill="#fff7ed" stroke="#fde68a" strokeWidth="3" strokeLinejoin="round" />
         <path d="M20 18h24v3L28.500 47h-4L40 21H20Z" fill="#dc2626" />
+      </g>);
+    case "WILD":
+      return (<g>
+        <path d="M17 20 25 46 32 29 39 46 47 20" stroke="#064e3b" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M17 20 25 46 32 29 39 46 47 20" stroke="#fff7cc" strokeWidth="5.200" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="m50 12 1.600 3.400L55 17l-3.400 1.600L50 22l-1.600-3.400L45 17l3.400-1.600Z" fill="#fde68a" />
+        <path d="m14 46 1.200 2.600L18 50l-2.800 1.400L14 54l-1.200-2.600L10 50l2.800-1.400Z" fill="#fde68a" />
+      </g>);
+    case "SCATTER":
+      return (<g>
+        <circle cx="32" cy="32" r="19" fill="#fdf2f8" opacity=".35" />
+        <path d="M32 9 37.500 26.500 55 32 37.500 37.500 32 55 26.500 37.500 9 32 26.500 26.500Z" fill="#fff7cc" stroke="#fbbf24" strokeWidth="2.400" strokeLinejoin="round" />
+        <path d="M32 18 35 29 46 32 35 35 32 46 29 35 18 32 29 29Z" fill="#ec4899" />
+        <circle cx="32" cy="32" r="3.200" fill="#fff" />
       </g>);
     default:
       return <circle cx="32" cy="32" r="14" fill="#94a3b8" />;

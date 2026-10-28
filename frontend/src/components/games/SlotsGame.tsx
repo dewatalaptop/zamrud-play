@@ -8,6 +8,7 @@ import { SymbolIcon } from "./art";
 import { symbolTier } from "./symbols";
 import { WinFx } from "./WinFx";
 import { signed } from "../../lib/outcome";
+import { sfx } from "../../lib/sound";
 import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
 
 const CELL = 128;
@@ -27,7 +28,7 @@ function Reel({ symbols, target, spinning, delay, win, motionOn }: { symbols: st
     if (strip.length < 2) return;
     controls.set({ y: 0 });
     const end = -(strip.length - 1) * CELL;
-    if (motionOn) void controls.start({ y: end, transition: { duration: 1.1 + delay, ease: [0.2, 0.7, 0.2, 1] } }).then(() => setThud((x) => x + 1));
+    if (motionOn) void controls.start({ y: end, transition: { duration: 1.1 + delay, ease: [0.2, 0.7, 0.2, 1] } }).then(() => { setThud((x) => x + 1); sfx("stop"); });
     else controls.set({ y: end });
   }, [strip]); // eslint-disable-line react-hooks/exhaustive-deps
   return (

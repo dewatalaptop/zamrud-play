@@ -4,6 +4,8 @@ export function summarizeOutcome(slug: string, o: any, t: (k: string, p?: Record
   switch (slug) {
     case "virtual-slots":
       return (o.reels as string[]).map((r) => t(`slots.symbols.${r}`)).join(" · ") + (o.multiplier ? ` — ${o.multiplier}×` : "");
+    case "zamrud-slots-5":
+      return t("slots5.summary", { wins: (o.wins?.length ?? 0) }) + (o.scatter?.mult ? ` · ${t("slots.symbols.SCATTER")} ×${o.scatter.count}` : "") + (o.multiplier ? ` — ${o.multiplier}×` : "");
     case "euro-roulette":
       return `${o.number} (${t(`roulette.colors.${o.color}`)}) · ${o.bets?.length ?? 0} ${t("roulette.betsCount")}`;
     case "dice-duel":

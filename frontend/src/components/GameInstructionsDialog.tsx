@@ -35,6 +35,28 @@ export function GameRules({ game }: { game: GameInfo }) {
           <p className="mt-2 text-xs text-faint">{t("slots.rtpNote", { rtp: r.rtp.percent })}</p>
         </div>
       )}
+      {game.slug === "zamrud-slots-5" && (
+        <div className="overflow-x-auto scroll-thin">
+          <table className="w-full text-left text-sm">
+            <caption className="mb-2 text-left font-semibold">{t("slots5.payHeader")}</caption>
+            <thead className="text-xs uppercase text-faint"><tr><th className="py-1.5">{t("slots.symbol")}</th><th>{t("slots.chance")}</th><th className="text-right">3×</th><th className="text-right">4×</th><th className="text-right">5×</th></tr></thead>
+            <tbody>
+              {r.symbols.filter((s: any) => s.id !== "SCATTER").map((s: any) => (
+                <tr key={s.id} className="border-t border-line">
+                  <td className="py-1.5"><span className="inline-flex items-center gap-2"><SymbolIcon id={s.id} size={28} />{t(`slots.symbols.${s.id}`)}</span></td>
+                  <td className="num text-muted">{s.chancePercent}%</td>{s.pays.map((v: number, i: number) => <td key={i} className="num text-right">{v}×</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <table className="mt-4 w-full text-left text-sm">
+            <caption className="mb-2 text-left font-semibold">{t("slots5.scatterTable")}</caption>
+            <thead className="text-xs uppercase text-faint"><tr><th className="py-1.5">{t("slots.symbol")}</th><th className="text-right">3</th><th className="text-right">4</th><th className="text-right">5+</th></tr></thead>
+            <tbody><tr className="border-t border-line"><td className="py-1.5"><span className="inline-flex items-center gap-2"><SymbolIcon id="SCATTER" size={28} />{t("slots.symbols.SCATTER")}</span></td>{r.scatterPays.map((v: number, i: number) => <td key={i} className="num text-right">{v}×</td>)}</tr></tbody>
+          </table>
+          <p className="mt-2 text-xs text-faint">{t("slots5.rtpNote", { rtp: r.rtp.percent, lines: r.rtp.lines, scatter: r.rtp.scatter })}</p>
+        </div>
+      )}
       {game.slug === "euro-roulette" && (
         <table className="w-full text-left text-sm">
           <caption className="mb-2 text-left font-semibold">{t("roulette.payouts")}</caption>

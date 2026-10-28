@@ -1,4 +1,6 @@
 {
+  "soundOn": "Suara aktif",
+  "soundOff": "Suara mati",
   "rules": "Aturan",
   "understood": "Saya mengerti",
   "stakeRange": "Taruhan: {min} – {max} koin virtual.",

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { sfx } from "../../lib/sound";
 
 /** Efek kemenangan bertingkat. Hanya dipakai untuk kemenangan nyata (payout > taruhan), bukan pengembalian. */
 export type WinTier = "win" | "big" | "mega";
@@ -23,6 +24,8 @@ function useCountUp(target: number, ms: number, instant: boolean) {
 export function WinFx({ payout, stake, label, fmt, reduced }: { payout: number; stake: number; label: Record<WinTier, string>; fmt: (n: number) => string; reduced: boolean }) {
   const mult = stake ? payout / stake : 0;
   const tier = winTier(mult);
+  // Suara (bila dinyalakan pemain) hanya untuk kemenangan nyata; komponen ini hanya dipasang saat payout > taruhan.
+  useEffect(() => { if (!reduced) sfx(tier === "mega" ? "mega" : tier === "big" ? "big" : "win"); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const shown = useCountUp(payout, tier === "mega" ? 1800 : 1200, reduced);
   const coins = useMemo(() => {
     const n = tier === "mega" ? 26 : tier === "big" ? 16 : 8;
