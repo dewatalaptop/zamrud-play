@@ -14,6 +14,7 @@
   },
   "spinning": "Gulungan berputar…",
   "matched": "Kombinasi cocok! Pengembalian {mult}× taruhan.",
+  "refunded": "Taruhan dikembalikan (1×). Saldo Anda tidak berubah.",
   "noMatch": "Tidak ada kombinasi kali ini.",
   "ready": "Pilih taruhan lalu putar.",
   "spin": "Putar"

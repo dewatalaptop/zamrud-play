@@ -42,7 +42,7 @@ export default function SlotsGame({ game }: GameProps) {
   const symbols: string[] = cfg.symbols.map((s: any) => s.id);
   const { start, busy } = useRound(game.slug);
   const [stake, setStake] = useState<number>(cfg.stakeSteps[1] ?? cfg.stakeSteps[0]);
-  const [reels, setReels] = useState<string[]>(["SEVEN", "SEVEN", "SEVEN"]);
+  const [reels, setReels] = useState<string[]>(["CHERRY", "BELL", "LEMON"]);
   const [spin, setSpin] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [result, setResult] = useState<{ stake: number; payout: number; reels: string[]; mult: number } | null>(null);
@@ -61,7 +61,7 @@ export default function SlotsGame({ game }: GameProps) {
     setRecent((x) => [{ reels: out, net: (r.net ?? 0) }, ...x].slice(0, 6));
     setOpen(true);
   };
-  const win = !animating && !!result && result.payout > 0;
+  const win = !animating && !!result && result.payout > result.stake; // pengembalian = taruhan bukan kemenangan
 
   return (
     <div className="grid gap-4">
@@ -71,7 +71,7 @@ export default function SlotsGame({ game }: GameProps) {
           {reels.map((s, i) => <Reel key={i} symbols={symbols} target={s} spinning={spin} delay={i * 0.35} win={win} motionOn={!m.reduced} />)}
         </div>
         <p className="mt-3 min-h-5 text-center text-sm text-muted" aria-live="polite">
-          {animating ? t("slots.spinning") : result ? (result.payout > 0 ? t("slots.matched", { mult: result.mult }) : t("slots.noMatch")) : t("slots.ready")}
+          {animating ? t("slots.spinning") : result ? (result.payout > result.stake ? t("slots.matched", { mult: result.mult }) : result.payout === result.stake ? t("slots.refunded") : t("slots.noMatch")) : t("slots.ready")}
         </p>
       </div>
       <div className="card grid gap-4">

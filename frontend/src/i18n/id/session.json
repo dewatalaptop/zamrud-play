@@ -3,6 +3,7 @@
   "timerHint": "Lama Anda bermain di sesi ini",
   "reminderTitle": "Waktunya rehat sejenak?",
   "reminderBody": "Anda sudah bermain selama {time} di sesi ini. Peregangan atau segelas air bisa membantu. Anda bebas melanjutkan kapan pun.",
+  "reminderStats": "Di sesi ini: {rounds} ronde, perubahan saldo koin virtual {net}.",
   "continue": "Lanjutkan",
   "takeBreak": "Istirahat 15 menit"
 }

@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Coffee, Timer } from "lucide-react";
 import { api } from "../lib/api";
 import { useAuth } from "../auth/AuthProvider";
-import { useT } from "../i18n";
+import { useI18n, useT } from "../i18n";
+import { signed } from "../lib/outcome";
 import { Modal } from "./ui";
 
 interface Beat {
-  sessionSeconds: number; todaySeconds: number; reminderMinutes: number; dailyLimitMinutes: number | null;
+  sessionSeconds: number; sessionRounds: number; sessionNet: number; todaySeconds: number; reminderMinutes: number; dailyLimitMinutes: number | null;
   breakUntil: string | null; limitReached: boolean;
 }
 const Ctx = createContext<{ beat: Beat | null; refresh: () => void }>({ beat: null, refresh: () => undefined });
@@ -24,7 +25,7 @@ export function PlaySessionProvider({ children }: { children: ReactNode }) {
   const [beat, setBeat] = useState<Beat | null>(null);
   const [remindOpen, setRemindOpen] = useState(false);
   const nextAt = useRef<number | null>(null);
-  const t = useT();
+  const { t, n } = useI18n();
   const nav = useNavigate();
 
   const tick = useCallback(async () => {
@@ -69,7 +70,10 @@ export function PlaySessionProvider({ children }: { children: ReactNode }) {
         </>}>
         <div className="flex items-start gap-3">
           <Timer className="mt-0.5 text-brand-400" />
-          <p className="text-sm text-muted">{t("session.reminderBody", { time: fmtDuration(beat?.sessionSeconds ?? 0) })}</p>
+          <div className="text-sm text-muted">
+            <p>{t("session.reminderBody", { time: fmtDuration(beat?.sessionSeconds ?? 0) })}</p>
+            <p className="mt-2 font-semibold">{t("session.reminderStats", { rounds: beat?.sessionRounds ?? 0, net: signed(beat?.sessionNet ?? 0, n) })}</p>
+          </div>
         </div>
       </Modal>
     </Ctx.Provider>

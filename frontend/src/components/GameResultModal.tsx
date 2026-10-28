@@ -13,8 +13,8 @@ export function GameResultModal({ open, onClose, onAgain, title, stake, payout, 
   return (
     <Modal open={open} onClose={onClose} title={title}
       footer={<>
-        <button className="btn btn-secondary" onClick={onClose}>{t("common.close")}</button>
-        {onAgain && <button className="btn btn-primary" onClick={onAgain}><RotateCcw size={16} />{t("game.playAgain")}</button>}
+        <button className="btn btn-primary" onClick={onClose}>{t("common.close")}</button>
+        {onAgain && <button className="btn btn-secondary" onClick={onAgain}><RotateCcw size={16} />{t("game.playAgain")}</button>}
       </>}>
       <div aria-live="polite">
         {children}

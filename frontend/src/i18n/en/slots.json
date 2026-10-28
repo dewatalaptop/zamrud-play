@@ -14,6 +14,7 @@
   },
   "spinning": "Reels spinning…",
   "matched": "A match! Returned {mult}x your stake.",
+  "refunded": "Stake returned (1x). Your balance did not change.",
   "noMatch": "No combination this time.",
   "ready": "Pick a stake, then spin.",
   "spin": "Spin"

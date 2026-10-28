@@ -116,8 +116,19 @@ export function heartbeat(userId: string) {
     }
     const settings = getSettings(userId);
     const today = todaySeconds(userId);
+    const cur = one<{ started_at: string; games_played: number }>(
+      "SELECT started_at, games_played FROM session_summaries WHERE user_id=? AND ended_at IS NULL ORDER BY started_at DESC LIMIT 1", userId
+    );
+    const sessionNet = cur
+      ? one<{ s: number }>(
+          "SELECT COALESCE(SUM(amount),0) s FROM wallet_transactions WHERE user_id=? AND type IN ('GAME_STAKE','GAME_PAYOUT') AND created_at>=?",
+          userId, cur.started_at
+        )!.s
+      : 0;
     return {
       sessionSeconds,
+      sessionRounds: cur?.games_played ?? 0,
+      sessionNet,
       todaySeconds: today,
       reminderMinutes: settings.reminderMinutes,
       dailyLimitMinutes: settings.dailyLimitMinutes,

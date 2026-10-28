@@ -464,6 +464,20 @@ describe("misi, pencapaian, personalisasi, bermain sehat", () => {
     expect(h2.data.limitReached).toBe(true);
     expect((await c.post("/api/games/virtual-slots/sessions", slotsInput(10))).error).toBe("DAILY_LIMIT_REACHED");
   });
+  it("detak melaporkan jumlah ronde & perubahan saldo sesi (reality check), bukan hanya waktu", async () => {
+    const { c } = await newUser("rc");
+    await c.post("/api/auth/heartbeat");
+    let net = 0;
+    for (let i = 0; i < 3; i++) {
+      resetRateLimits();
+      const r = await c.post("/api/games/virtual-slots/sessions", slotsInput(10));
+      expect(r.status).toBe(200);
+      net += r.data.payout - r.data.stake;
+    }
+    const h = await c.post("/api/auth/heartbeat");
+    expect(h.data.sessionRounds).toBe(3);
+    expect(h.data.sessionNet).toBe(net);
+  });
   it("batas harian ditegakkan walau klien TIDAK pernah mengirim heartbeat (waktu dari aktivitas ronde)", async () => {
     const { c } = await newUser("nohb");
     await c.put("/api/me/responsible-play", { reminderMinutes: 30, dailyLimitMinutes: 10, cooldownSeconds: 0 });
