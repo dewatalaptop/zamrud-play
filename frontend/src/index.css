@@ -258,3 +258,7 @@ html, body { overflow-x: clip; }
 .mascot-img { -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); filter: drop-shadow(0 10px 24px hsl(155 80% 45% / .45)); animation: mascotFloat 6s ease-in-out infinite; }
 @keyframes mascotFloat { 50% { transform: translateY(-8px) } }
 @media (prefers-reduced-motion: reduce) { .mascot-img { animation: none; } }
+/* teks di dalam papan gelap tetap terbaca di tema terang */
+.slot-machine .text-muted, .game-stage .text-muted { color: hsl(210 20% 82%); }
+.slot-machine .num, .game-stage .num { color: #fff; }
+.slot-machine .bg-surface-2 { background: hsl(0 0% 0% / .45); }
