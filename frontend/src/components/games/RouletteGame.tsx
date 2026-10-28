@@ -106,7 +106,7 @@ export default function RouletteGame({ game }: GameProps) {
             <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={spinning || cel} label={t("roulette.chipValue")} />
           </div>
           <div className="grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1" role="group" aria-label={t("roulette.numbers")}>
-            <button className="roulette-cell rc-green row-span-3 !aspect-auto" aria-pressed={has("straight", 0)} onClick={() => toggle("straight", 0)} aria-label="0">0</button>
+            <button className="roulette-cell rc-green row-span-3 !aspect-auto" aria-pressed={has("straight", 0)} onClick={() => toggle("straight", 0)} disabled={spinning || cel} aria-label="0">0</button>
             {[3, 2, 1].flatMap((row) => Array.from({ length: 12 }, (_, c) => c * 3 + row)).map((num) => (
               <button key={num} className={`roulette-cell rc-${colorOf(num)}`} aria-pressed={has("straight", num)} onClick={() => toggle("straight", num)} disabled={spinning || cel} aria-label={`${num} ${t(`roulette.colors.${colorOf(num)}`)}`}>{num}</button>
             ))}

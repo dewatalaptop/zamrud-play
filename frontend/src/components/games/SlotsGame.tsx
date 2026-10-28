@@ -72,7 +72,7 @@ export default function SlotsGame({ game }: GameProps) {
   };
   // Autoplay dibatasi: maks 10 putaran, jeda antarronde, berhenti otomatis pada kemenangan besar, rugi beruntun,
   // saldo/batas bermain bermasalah, dialog (mis. pengingat sesi) muncul, atau tab disembunyikan.
-  const AUTO_MAX_LOSS_X = 25;
+  const AUTO_MAX_LOSS_X = 8;
   const runAuto = async (count: number) => {
     stopRef.current = false; setAutoNote(""); let net = 0, done = 0, why = "";
     for (let i = count; i > 0; i--) {
@@ -106,7 +106,7 @@ export default function SlotsGame({ game }: GameProps) {
           <div><small>{t("game.stake")}</small><b>{n(stake)}</b></div>
           <div><small>{t("slots.lastWin")}</small><b>{!animating && result && result.payout > result.stake ? n(result.payout) : "—"}</b></div>
         </div>
-        {win && result && <WinFx key={spin} payout={result.payout} stake={result.stake} reduced={m.reduced} fmt={n}
+        {celebrating && win && result && <WinFx key={spin} payout={result.payout} stake={result.stake} reduced={m.reduced} fmt={n}
           label={{ win: t("slots.tierWin"), big: t("slots.tierBig"), mega: t("slots.tierMega") }} />}
         <p className="slot-msg mt-3 min-h-5 text-center text-sm" aria-live="polite">
           {animating ? t("slots.spinning") : result ? (result.payout > result.stake ? t("slots.matched", { mult: result.mult }) : result.payout === result.stake ? t("slots.refunded") : t("slots.noMatch")) : t("slots.ready")}
@@ -115,7 +115,7 @@ export default function SlotsGame({ game }: GameProps) {
       <div className="card grid gap-4">
         <div>
           <p className="mb-2 text-sm font-semibold">{t("game.stake")}</p>
-          <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating || celebrating} label={t("game.stake")} />
+          <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating || celebrating || autoLeft > 0} label={t("game.stake")} />
         </div>
         <div className="flex items-stretch gap-2">
           <button className="btn btn-primary btn-lg spin-cta flex-1" onClick={() => void spinNow()} disabled={busy || animating || celebrating || autoLeft > 0}><RotateCw size={18} className={animating ? "animate-spin" : ""} />{t("slots.spin")} · {n(stake)}</button>
