@@ -239,3 +239,22 @@ html, body { overflow-x: clip; }
 .game-stage .win-banner { display: flex; align-items: baseline; gap: 12px; padding: 6px 18px; border-radius: 16px; }
 .game-stage .win-label { font-size: .8rem !important; letter-spacing: .14em !important; }
 .game-stage .win-amount { font-size: 1.5rem !important; }
+
+/* ===== Aset gambar Gemini: latar papan & maskot ===== */
+.slot-machine {
+  background:
+    radial-gradient(70% 55% at 50% 0%, hsl(155 70% 30% / .35), transparent 70%),
+    linear-gradient(180deg, hsl(224 45% 8% / .5), hsl(224 45% 6% / .78)),
+    url("/img/slot-bg.webp") center / cover no-repeat,
+    hsl(224 45% 8%);
+}
+.game-stage {
+  background:
+    radial-gradient(70% 55% at 50% 0%, hsl(155 70% 30% / .3), transparent 70%),
+    linear-gradient(180deg, hsl(224 45% 8% / .45), hsl(224 45% 6% / .8)),
+    url("/img/table-bg.webp") center / cover no-repeat,
+    hsl(224 45% 8%);
+}
+.mascot-img { -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); filter: drop-shadow(0 10px 24px hsl(155 80% 45% / .45)); animation: mascotFloat 6s ease-in-out infinite; }
+@keyframes mascotFloat { 50% { transform: translateY(-8px) } }
+@media (prefers-reduced-motion: reduce) { .mascot-img { animation: none; } }
