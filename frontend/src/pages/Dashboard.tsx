@@ -117,7 +117,7 @@ export default function Dashboard() {
         <section className="card" aria-labelledby="rc">
           <div className="mb-4 flex items-center justify-between"><h2 id="rc" className="text-lg font-bold">{t("dashboard.recentTitle")}</h2><Link to="/history" className="btn btn-ghost btn-sm">{t("dashboard.seeAll")}</Link></div>
           {history.loading ? <LoadingSkeleton rows={2} /> : !history.data?.items.length ? (
-            <EmptyState title={t("history.emptyTitle")} text={t("history.emptyText")} />
+            <EmptyState art="data" title={t("history.emptyTitle")} text={t("history.emptyText")} />
           ) : <GameHistoryTable items={history.data.items} />}
         </section>
       </div>

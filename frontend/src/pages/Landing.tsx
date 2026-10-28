@@ -24,6 +24,7 @@ export default function Landing() {
     <div className="grid gap-16">
       {/* Hero */}
       <section className="relative overflow-hidden rounded-[2rem] border border-line px-6 py-12 sm:px-12 sm:py-20" style={{ background: "radial-gradient(90% 120% at 100% 0%, hsl(155 60% 22% / .7), transparent 60%), linear-gradient(160deg, var(--surface), var(--bg))" }}>
+        <img src="/img/hero-bg.webp" alt="" aria-hidden="true" width={1376} height={768} fetchPriority="high" decoding="async" className="hero-bg-img pointer-events-none absolute inset-0 h-full w-full object-cover" />
         <div className="bg-pattern-dots pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
         <div className="relative grid items-center gap-10 lg:grid-cols-[1.15fr_.85fr]">
           <div>

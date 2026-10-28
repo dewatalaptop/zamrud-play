@@ -30,7 +30,7 @@ const AdminAudit = lazy(() => import("./pages/admin/Audit"));
 
 function NotFound() {
   const t = useT();
-  return <EmptyState title={t("notFound.title")} text={t("notFound.text")} action={<Link to="/" className="btn btn-primary">{t("nav.home")}</Link>} />;
+  return <EmptyState art="notfound" title={t("notFound.title")} text={t("notFound.text")} action={<Link to="/" className="btn btn-primary">{t("nav.home")}</Link>} />;
 }
 const L = ({ children }: { children: React.ReactNode }) => <Suspense fallback={<LoadingSkeleton rows={3} height={120} />}>{children}</Suspense>;
 

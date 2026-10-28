@@ -16,7 +16,7 @@ export default function Leaderboard() {
     <div>
       <PageHeader eyebrow={t("leaderboard.eyebrow")} title={t("leaderboard.title")} subtitle={t("leaderboard.subtitle")} />
       {loading ? <LoadingSkeleton rows={5} height={64} /> : !data?.length ? (
-        <EmptyState icon={<Trophy />} title={t("leaderboard.emptyTitle")} text={t("leaderboard.emptyText")} action={<ButtonLink to="/register">{t("landing.cta")}</ButtonLink>} />
+        <EmptyState art="rank" icon={<Trophy />} title={t("leaderboard.emptyTitle")} text={t("leaderboard.emptyText")} action={<ButtonLink to="/register">{t("landing.cta")}</ButtonLink>} />
       ) : (
         <ol className="grid gap-3">
           {data.map((r) => (

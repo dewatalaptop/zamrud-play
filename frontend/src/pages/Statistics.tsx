@@ -32,7 +32,7 @@ export default function Statistics() {
   if (s.totals.gamesPlayed === 0) {
     return (
       <div><PageHeader eyebrow={t("nav.statistics")} title={t("stats.title")} subtitle={t("stats.subtitle")} />
-        <EmptyState icon={<BarChart3 />} title={t("stats.emptyTitle")} text={t("stats.emptyText")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} /></div>
+        <EmptyState art="data" icon={<BarChart3 />} title={t("stats.emptyTitle")} text={t("stats.emptyText")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} /></div>
     );
   }
   const earned = s.totals.grossPayouts + s.totals.coinsReceivedAsRewards;

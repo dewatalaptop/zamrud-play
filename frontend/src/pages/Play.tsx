@@ -35,7 +35,7 @@ export default function Play() {
   }, [g?.slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <LoadingSkeleton rows={3} height={160} />;
-  if (error || !g || !Games[g.slug]) return <EmptyState title={t("games.notFound")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />;
+  if (error || !g || !Games[g.slug]) return <EmptyState art="notfound" title={t("games.notFound")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />;
   const Game = Games[g.slug];
 
   return (

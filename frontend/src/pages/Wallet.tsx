@@ -96,7 +96,7 @@ export default function Wallet() {
             </select>
           </label>
         </div>
-        {loading && !items.length ? <LoadingSkeleton rows={4} height={52} /> : !items.length ? <EmptyState title={t("wallet.emptyTitle")} text={t("wallet.emptyText")} /> : (
+        {loading && !items.length ? <LoadingSkeleton rows={4} height={52} /> : !items.length ? <EmptyState art="data" title={t("wallet.emptyTitle")} text={t("wallet.emptyText")} /> : (
           <ul className="divide-y divide-line">
             {items.map((x) => (
               <li key={x.id} className="flex items-center justify-between gap-3 py-3">

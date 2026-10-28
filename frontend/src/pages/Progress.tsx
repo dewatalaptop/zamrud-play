@@ -34,7 +34,7 @@ export function Missions() {
   return (
     <div>
       <PageHeader eyebrow={t("nav.missions")} title={t("missions.title")} subtitle={t("missions.subtitle")} />
-      {loading ? <LoadingSkeleton rows={3} height={150} /> : !data?.length ? <EmptyState icon={<Target />} title={t("missions.emptyTitle")} text={t("missions.emptyText")} /> : (
+      {loading ? <LoadingSkeleton rows={3} height={150} /> : !data?.length ? <EmptyState art="data" icon={<Target />} title={t("missions.emptyTitle")} text={t("missions.emptyText")} /> : (
         <div className="grid gap-8">
           {groups.map((g) => {
             const list = data.filter((m) => m.period === g);
@@ -99,7 +99,7 @@ export function History() {
         actions={<label className="text-sm"><span className="sr-only">{t("history.filter")}</span><select className="select !w-auto" value={game} onChange={(e) => setGame(e.target.value)}><option value="">{t("common.all")}</option>{games.data?.map((g) => <option key={g.slug} value={g.slug}>{tl(g.name)}</option>)}</select></label>} />
       <div className="card">
         {loading && !items.length ? <LoadingSkeleton rows={4} height={52} /> : !items.length ? (
-          <EmptyState title={t("history.emptyTitle")} text={t("history.emptyText")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />
+          <EmptyState art="data" title={t("history.emptyTitle")} text={t("history.emptyText")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />
         ) : <GameHistoryTable items={items} />}
         {cursor && <div className="mt-4 text-center"><button className="btn btn-secondary btn-sm" disabled={loading} onClick={() => load(false, cursor)}>{t("common.loadMore")}</button></div>}
       </div>

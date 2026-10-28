@@ -26,7 +26,7 @@ export default function GameDetail() {
   }, [me?.id, g?.slug]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) return <LoadingSkeleton rows={3} height={140} />;
-  if (error || !g) return <EmptyState title={t("games.notFound")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />;
+  if (error || !g) return <EmptyState art="notfound" title={t("games.notFound")} action={<Link to="/games" className="btn btn-primary">{t("games.title")}</Link>} />;
 
   return (
     <article className="grid gap-6 lg:grid-cols-[1fr_380px]">

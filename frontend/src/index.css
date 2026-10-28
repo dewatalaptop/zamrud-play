@@ -167,3 +167,8 @@ h1, h2, h3, .font-display { font-family: Sora, Inter, system-ui, sans-serif; let
 .btn.btn-sm, .stake-chip, .chip { white-space: nowrap; }
 .btn:has(> svg:only-child) { white-space: nowrap; }
 html, body { overflow-x: clip; }
+
+/* Gambar hero: terang-redup di tema gelap; di tema terang diturunkan agar teks tetap kontras >= 4.5 (WCAG AA). */
+.hero-bg-img { opacity: .45; }
+:root[data-theme="light"] .hero-bg-img { opacity: .08; }
+:root[data-theme="light"] .eyebrow { color: var(--brand-700); }
