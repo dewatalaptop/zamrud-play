@@ -5,6 +5,7 @@ import { useI18n } from "../../i18n";
 import { useMotion } from "../../lib/hooks";
 import { GameResultModal } from "../GameResultModal";
 import { SymbolIcon } from "./art";
+import { symbolTier } from "./symbols";
 import { WinFx } from "./WinFx";
 import { signed } from "../../lib/outcome";
 import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
@@ -14,6 +15,7 @@ const FILLER = 14;
 
 function Reel({ symbols, target, spinning, delay, win, motionOn }: { symbols: string[]; target: string; spinning: number; delay: number; win: boolean; motionOn: boolean }) {
   const controls = useAnimationControls();
+  const [thud, setThud] = useState(0);
   const [strip, setStrip] = useState<string[]>([target]);
   // Strip acak (murni visual) yang berakhir di simbol hasil dari server.
   useEffect(() => {
@@ -25,13 +27,13 @@ function Reel({ symbols, target, spinning, delay, win, motionOn }: { symbols: st
     if (strip.length < 2) return;
     controls.set({ y: 0 });
     const end = -(strip.length - 1) * CELL;
-    if (motionOn) void controls.start({ y: end, transition: { duration: 1.1 + delay, ease: [0.2, 0.7, 0.2, 1] } });
+    if (motionOn) void controls.start({ y: end, transition: { duration: 1.1 + delay, ease: [0.2, 0.7, 0.2, 1] } }).then(() => setThud((x) => x + 1));
     else controls.set({ y: end });
   }, [strip]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div className={`reel ${win ? "reel-win" : ""}`} role="img" aria-label={target}>
+    <div className={`reel ${win ? "reel-win" : ""} ${thud && motionOn ? (thud % 2 ? "reel-thud-a" : "reel-thud-b") : ""}`} role="img" aria-label={target}>
       <motion.div className="reel-strip" animate={controls} initial={{ y: 0 }}>
-        {strip.map((s, i) => <div key={i} className="reel-cell"><SymbolIcon id={s} size={92} /></div>)}
+        {strip.map((s, i) => <div key={i} className={`reel-cell ${symbolTier(s) === "high" ? "rare" : ""}`}><SymbolIcon id={s} size={92} /></div>)}
       </motion.div>
     </div>
   );
@@ -95,6 +97,10 @@ export default function SlotsGame({ game }: GameProps) {
     <div className="grid gap-4">
       <BalanceBar />
       <div className="slot-machine">
+        <picture className="slot-bgfx" aria-hidden="true">
+          <source media="(max-width: 640px)" srcSet="/img/slot-bg-portrait.webp" />
+          <img src="/img/slot-bg.webp" alt="" width={1000} height={558} decoding="async" />
+        </picture>
         <div className="slot-title" aria-hidden="true"><SymbolIcon id="DIAMOND" size={20} />{t("slots.title")}<SymbolIcon id="DIAMOND" size={20} /></div>
         <div className={`slot-reels ${win ? "is-win" : ""}`}>
           <div className="slot-payline" aria-hidden="true" />

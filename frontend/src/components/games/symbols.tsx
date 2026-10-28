@@ -11,6 +11,9 @@ const SKIN: Record<string, { a: string; b: string; glow: string }> = {
   SEVEN: { a: "#f87171", b: "#7f1d1d", glow: "#ef4444" },
 };
 
+/** Siluet menurut tingkat nilai: rendah = kotak membulat, menengah = bulat, tinggi = segi delapan bermahkota. */
+export const symbolTier = (id: string): "low" | "mid" | "high" => (["STAR", "DIAMOND", "SEVEN"].includes(id) ? "high" : ["BELL", "CLOVER"].includes(id) ? "mid" : "low");
+
 function Glyph({ id }: { id: string }) {
   switch (id) {
     case "CHERRY":
@@ -66,6 +69,7 @@ function Glyph({ id }: { id: string }) {
 
 export function SymbolIcon({ id, size = 72 }: { id: string; size?: number }) {
   const uid = useId().replace(/:/g, "");
+  const tier = symbolTier(id);
   const k = SKIN[id] ?? { a: "#94a3b8", b: "#334155", glow: "#94a3b8" };
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" role="img" aria-label={id.toLowerCase()} style={{ filter: `drop-shadow(0 2px 6px ${k.glow}66)` }}>
@@ -74,10 +78,23 @@ export function SymbolIcon({ id, size = 72 }: { id: string; size?: number }) {
         <linearGradient id={`${uid}r`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fef3c7" /><stop offset=".45" stopColor="#f59e0b" /><stop offset="1" stopColor="#78350f" /></linearGradient>
         <linearGradient id={`${uid}s`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fff" stopOpacity=".55" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></linearGradient>
       </defs>
-      <rect x="3" y="3" width="58" height="58" rx="17" fill={`url(#${uid}r)`} />
-      <rect x="6.500" y="6.500" width="51" height="51" rx="14" fill={`url(#${uid}g)`} />
+      {tier === "low" && (<>
+        <rect x="3" y="3" width="58" height="58" rx="17" fill={`url(#${uid}r)`} />
+        <rect x="6.500" y="6.500" width="51" height="51" rx="14" fill={`url(#${uid}g)`} />
+      </>)}
+      {tier === "mid" && (<>
+        <circle cx="32" cy="32" r="30" fill={`url(#${uid}r)`} />
+        <circle cx="32" cy="32" r="26.500" fill={`url(#${uid}g)`} />
+      </>)}
+      {tier === "high" && (<>
+        <path d="M32 0.500 38 6h9l5 5v9l5.500 6-5.500 6v9l-5 5h-9L32 63.500 26 58h-9l-5-5v-9L6.500 38 12 32v-9l5-5h9Z" fill="#fde68a" opacity=".55" transform="translate(0 0) scale(1)" />
+        <path d="M21 3h22l18 18v22L43 61H21L3 43V21Z" fill={`url(#${uid}r)`} />
+        <path d="M23 7h18l16 16v18L41 57H23L7 41V23Z" fill={`url(#${uid}g)`} />
+      </>)}
       <Glyph id={id} />
-      <path d="M10 24C10 14 17 9 28 9h8c-9 2-19 6-26 15Z" fill={`url(#${uid}s)`} />
+      {tier === "low" && <path d="M10 24C10 14 17 9 28 9h8c-9 2-19 6-26 15Z" fill={`url(#${uid}s)`} />}
+      {tier === "mid" && <ellipse cx="25" cy="15" rx="14" ry="6.500" transform="rotate(-18 25 15)" fill={`url(#${uid}s)`} />}
+      {tier === "high" && <path d="M23 7h18l10 10H13Z" fill={`url(#${uid}s)`} />}
     </svg>
   );
 }
