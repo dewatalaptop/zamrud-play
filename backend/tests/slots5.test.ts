@@ -67,6 +67,7 @@ describe("slots 5×3", () => {
     expect(slots5Engine.validateConfig({ ...cfg, symbols: cfg.symbols.filter((s) => s.id !== "WILD") }).ok).toBe(false);
     expect(slots5Engine.validateConfig({ ...cfg, stakeSteps: [10, 55] }).ok).toBe(false);
     expect(slots5Engine.validateConfig({ ...cfg, scatterPays: [5000, 5000, 5000] }).ok).toBe(false);
+    expect(slots5Engine.validateConfig({ ...cfg, maxStake: 1e15, stakeSteps: [10, 1e15] }).ok).toBe(false); // batas atas taruhan
   });
   it("tidak ada fitur bonus: hasil hanya grid/wins/scatter", () => {
     const r = slots5Engine.start(cfg, { stake: 50 }, sequenceRng(Array(15).fill(0)));

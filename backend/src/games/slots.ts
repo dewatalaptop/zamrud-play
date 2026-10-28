@@ -20,8 +20,8 @@ const SymbolSchema = z.object({
 });
 export const SlotsConfigSchema = z.object({
   minStake: z.number().int().min(1),
-  maxStake: z.number().int().min(1),
-  stakeSteps: z.array(z.number().int().min(1)).min(1).max(12),
+  maxStake: z.number().int().min(1).max(1_000_000),
+  stakeSteps: z.array(z.number().int().min(1).max(1_000_000)).min(1).max(12),
   symbols: z.array(SymbolSchema).min(3).max(12),
 });
 export type SlotsConfig = z.infer<typeof SlotsConfigSchema>;

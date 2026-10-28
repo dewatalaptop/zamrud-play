@@ -31,8 +31,8 @@ const SymbolSchema = z.object({
 });
 export const Slots5ConfigSchema = z.object({
   minStake: z.number().int().min(1),
-  maxStake: z.number().int().min(1),
-  stakeSteps: z.array(z.number().int().min(1)).min(1).max(12),
+  maxStake: z.number().int().min(1).max(1_000_000),
+  stakeSteps: z.array(z.number().int().min(1).max(1_000_000)).min(1).max(12),
   symbols: z.array(SymbolSchema).min(5).max(12),
   /** Pembayaran SCATTER untuk 3, 4, 5+ buah (× taruhan TOTAL). */
   scatterPays: Pay3,

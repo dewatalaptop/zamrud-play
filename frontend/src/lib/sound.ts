@@ -10,8 +10,10 @@ const EVT = "zp-sound-change";
 type Kind = "stop" | "win" | "big" | "mega";
 
 let ctx: AudioContext | null = null;
+let mem: boolean | null = null; // cadangan bila localStorage diblokir
 
 export function soundEnabled(): boolean {
+  if (mem !== null) return mem;
   try { return localStorage.getItem(KEY) === "1"; } catch { return false; }
 }
 
@@ -26,7 +28,8 @@ function audio(): AudioContext | null {
 }
 
 export function setSoundEnabled(on: boolean) {
-  try { localStorage.setItem(KEY, on ? "1" : "0"); } catch { /* penyimpanan diblokir: tetap berlaku untuk sesi ini lewat event */ }
+  mem = on;
+  try { localStorage.setItem(KEY, on ? "1" : "0"); } catch { /* penyimpanan diblokir: pilihan tetap berlaku untuk sesi ini lewat mem */ }
   if (on) { audio(); sfx("stop", true); } // dipanggil dari klik pemain → konteks audio boleh dibuka
   window.dispatchEvent(new Event(EVT));
 }

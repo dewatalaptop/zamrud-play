@@ -87,7 +87,7 @@ export default function SlotsGrid({ game }: GameProps) {
     // Sorotan hanya untuk kemenangan nyata (total > taruhan); hasil di bawah/sama dengan taruhan tidak disamarkan sebagai menang.
     const real = r.payout > r.stake;
     setResult({ stake: r.stake, payout: r.payout, grid: v.grid, wins: real ? v.wins : [], scatter: real ? v.scatter : { count: v.scatter.count, mult: 0, cells: [] }, mult });
-    setRecent((x) => [{ wins: v.wins.length, net: r.net ?? 0 }, ...x].slice(0, 6));
+    setRecent((x) => [{ wins: real ? v.wins.length : 0, net: r.net ?? 0 }, ...x].slice(0, 6));
     if (mult > 1 && !m.reduced) { setCelebrating(true); await wait(auto ? 1300 : mult >= 25 ? 3200 : 2400); setCelebrating(false); }
     if (!auto) setOpen(true);
     return { mult, net: r.net ?? 0 };
@@ -171,7 +171,7 @@ export default function SlotsGrid({ game }: GameProps) {
           <ul className="grid gap-2">
             {recent.map((r, i) => (
               <li key={i} className="flex items-center justify-between rounded-xl bg-surface-2 px-3 py-2">
-                <span className="text-sm text-muted">{t("slots5.summary", { wins: r.wins })}</span>
+                <span className="text-sm text-muted">{r.wins > 0 ? t("slots5.summary", { wins: r.wins }) : "—"}</span>
                 <span className="num text-sm font-semibold">{r.net > 0 ? "+" : r.net < 0 ? "−" : ""}{n(Math.abs(r.net))}</span>
               </li>
             ))}
