@@ -218,3 +218,9 @@ html, body { overflow-x: clip; }
 @keyframes raysSpin { to { transform: rotate(360deg) } }
 @keyframes coinFall { 0% { transform: translateY(0) rotateY(0); opacity: 1 } 85% { opacity: 1 } 100% { transform: translateY(520px) rotateY(720deg); opacity: 0 } }
 @media (prefers-reduced-motion: reduce) { .win-fx, .win-banner, .win-mega .win-banner { animation: none; } }
+
+/* ===== Tombol putar emas ===== */
+.slot-machine ~ .card .spin-cta { color: #3b2300; font-weight: 900; letter-spacing: .06em; border: 0; background: linear-gradient(180deg, #fff1b8, #f5b82e 55%, #d9941a); box-shadow: 0 4px 0 #78350f, 0 8px 18px -4px rgb(245 184 46 / .55); }
+.slot-machine ~ .card .spin-cta:hover:not(:disabled) { filter: brightness(1.06); }
+.slot-machine ~ .card .spin-cta:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #78350f; }
+.slot-machine ~ .card .spin-cta:disabled { filter: saturate(.5) brightness(.8); }

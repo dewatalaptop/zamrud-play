@@ -1,11 +1,12 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import { Play } from "lucide-react";
+import { Play, RotateCw, Square } from "lucide-react";
 import { useI18n } from "../../i18n";
 import { useMotion } from "../../lib/hooks";
 import { GameResultModal } from "../GameResultModal";
 import { SymbolIcon } from "./art";
 import { WinFx } from "./WinFx";
+import { signed } from "../../lib/outcome";
 import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
 
 const CELL = 128;
@@ -47,13 +48,17 @@ export default function SlotsGame({ game }: GameProps) {
   const [spin, setSpin] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
+  const [autoLeft, setAutoLeft] = useState(0);
+  const [autoNote, setAutoNote] = useState("");
+  const stopRef = useRef(false);
+  useEffect(() => () => { stopRef.current = true; }, []);
   const [result, setResult] = useState<{ stake: number; payout: number; reels: string[]; mult: number } | null>(null);
   const [open, setOpen] = useState(false);
   const [recent, setRecent] = useState<{ reels: string[]; net: number }[]>([]);
 
-  const spinNow = async () => {
+  const spinNow = async (auto = false): Promise<{ mult: number; net: number } | null> => {
     const r = await start({ stake });
-    if (!r) return;
+    if (!r) return null;
     const out = r.view.reels as string[];
     setReels(out); setSpin((x) => x + 1); setAnimating(true);
     await wait(m.reduced ? 120 : 2100);
@@ -61,8 +66,28 @@ export default function SlotsGame({ game }: GameProps) {
     const mult = r.stake ? r.payout / r.stake : 0;
     setResult({ stake: r.stake, payout: r.payout, reels: out, mult });
     setRecent((x) => [{ reels: out, net: (r.net ?? 0) }, ...x].slice(0, 6));
-    if (mult > 1 && !m.reduced) { setCelebrating(true); await wait(mult >= 25 ? 3200 : 2400); setCelebrating(false); }
-    setOpen(true);
+    if (mult > 1 && !m.reduced) { setCelebrating(true); await wait(auto ? 1300 : mult >= 25 ? 3200 : 2400); setCelebrating(false); }
+    if (!auto) setOpen(true);
+    return { mult, net: r.net ?? 0 };
+  };
+  // Autoplay dibatasi: maks 10 putaran, jeda antarronde, berhenti otomatis pada kemenangan besar, rugi beruntun,
+  // saldo/batas bermain bermasalah, dialog (mis. pengingat sesi) muncul, atau tab disembunyikan.
+  const AUTO_MAX_LOSS_X = 25;
+  const runAuto = async (count: number) => {
+    stopRef.current = false; setAutoNote(""); let net = 0, done = 0, why = "";
+    for (let i = count; i > 0; i--) {
+      setAutoLeft(i);
+      const o = await spinNow(true);
+      if (!o) { why = "error"; break; }
+      done++; net += o.net;
+      if (stopRef.current) { why = "manual"; break; }
+      if (o.mult >= 8) { why = "bigwin"; break; }
+      if (net <= -AUTO_MAX_LOSS_X * stake) { why = "loss"; break; }
+      if (document.hidden || document.querySelector("[role=dialog]")) { why = "paused"; break; }
+      if (i > 1) await wait(m.reduced ? 300 : 900);
+    }
+    setAutoLeft(0);
+    setAutoNote(t("slots.autoDone", { rounds: done, net: signed(net, n), why: t(`slots.autoWhy_${why || "end"}`) }));
   };
   const win = !animating && !!result && result.payout > result.stake; // pengembalian = taruhan bukan kemenangan
 
@@ -92,7 +117,13 @@ export default function SlotsGame({ game }: GameProps) {
           <p className="mb-2 text-sm font-semibold">{t("game.stake")}</p>
           <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={busy || animating || celebrating} label={t("game.stake")} />
         </div>
-        <button className="btn btn-primary btn-lg" onClick={spinNow} disabled={busy || animating || celebrating}><Play size={18} />{t("slots.spin")} · {n(stake)}</button>
+        <div className="flex items-stretch gap-2">
+          <button className="btn btn-primary btn-lg spin-cta flex-1" onClick={() => void spinNow()} disabled={busy || animating || celebrating || autoLeft > 0}><RotateCw size={18} className={animating ? "animate-spin" : ""} />{t("slots.spin")} · {n(stake)}</button>
+          {autoLeft > 0
+            ? <button className="btn btn-secondary btn-lg" onClick={() => { stopRef.current = true; }}><Square size={16} />{t("slots.autoStop", { left: autoLeft })}</button>
+            : <button className="btn btn-secondary btn-lg" onClick={() => void runAuto(10)} disabled={busy || animating || celebrating}><Play size={16} />{t("slots.autoStart", { n: 10 })}</button>}
+        </div>
+        {autoNote && <p className="text-sm text-muted" role="status">{autoNote}</p>}
       </div>
       {recent.length > 0 && (
         <section className="card" aria-label={t("game.recent")}>
