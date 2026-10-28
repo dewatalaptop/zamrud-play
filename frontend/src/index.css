@@ -224,3 +224,18 @@ html, body { overflow-x: clip; }
 .slot-machine ~ .card .spin-cta:hover:not(:disabled) { filter: brightness(1.06); }
 .slot-machine ~ .card .spin-cta:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #78350f; }
 .slot-machine ~ .card .spin-cta:disabled { filter: saturate(.5) brightness(.8); }
+
+/* ===== Panggung game lain: bingkai emas yang sama ===== */
+.game-stage { position: relative; isolation: isolate; color: #f8fafc; padding: 22px 16px 18px; margin-top: 14px; border-radius: 28px;
+  background: radial-gradient(70% 55% at 50% 0%, hsl(155 70% 30% / .5), transparent 70%), radial-gradient(60% 50% at 100% 100%, hsl(262 60% 35% / .4), transparent 70%), linear-gradient(180deg, hsl(224 40% 12%), hsl(224 45% 7%));
+  box-shadow: 0 0 0 3px hsl(43 96% 56%), 0 0 0 5px hsl(35 80% 28%), 0 0 0 7px hsl(43 96% 70%), 0 18px 40px -12px rgb(0 0 0 / .6), 0 0 36px hsl(155 80% 45% / .22); }
+.game-stage::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none; background: repeating-linear-gradient(45deg, hsl(0 0% 100% / .025) 0 2px, transparent 2px 10px); }
+.game-stage > .slot-title { margin-top: -34px; }
+/* kartu lobi: kilau emas saat disorot */
+.card-interactive { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.card-interactive:hover { border-color: hsl(43 90% 55% / .6); box-shadow: 0 0 0 1px hsl(43 90% 55% / .35), 0 14px 30px -12px hsl(43 96% 56% / .35); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .card-interactive:hover { transform: none; } }
+.game-stage .win-fx { place-items: end center; padding-bottom: 10px; }
+.game-stage .win-banner { display: flex; align-items: baseline; gap: 12px; padding: 6px 18px; border-radius: 16px; }
+.game-stage .win-label { font-size: .8rem !important; letter-spacing: .14em !important; }
+.game-stage .win-amount { font-size: 1.5rem !important; }

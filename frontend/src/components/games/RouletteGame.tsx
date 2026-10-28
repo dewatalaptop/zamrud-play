@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Eraser, Play } from "lucide-react";
 import { useI18n } from "../../i18n";
 import { useMotion } from "../../lib/hooks";
+import { WinFx } from "./WinFx";
 import { GameResultModal } from "../GameResultModal";
 import { BalanceBar, StakePicker, useRound, wait, type GameProps } from "./shared";
 
@@ -52,6 +53,7 @@ export default function RouletteGame({ game }: GameProps) {
   const [angle, setAngle] = useState(0);
   const [anim, setAnim] = useState(false);
   const [spinning, setSpinning] = useState(false);
+  const [cel, setCel] = useState(false);
   const [last, setLast] = useState<{ number: number; stake: number; payout: number } | null>(null);
   const [open, setOpen] = useState(false);
   const total = useMemo(() => bets.reduce((s, b) => s + b.stake, 0), [bets]);
@@ -80,6 +82,7 @@ export default function RouletteGame({ game }: GameProps) {
     await wait(m.reduced ? 200 : 4200);
     setAnim(false); setSpinning(false);
     setLast({ number: num, stake: r.stake, payout: r.payout });
+    if (r.payout > r.stake && !m.reduced) { setCel(true); await wait(r.payout / r.stake >= 25 ? 3200 : 2400); setCel(false); }
     setOpen(true);
   };
   const ms = m.reduced ? 100 : 4000;
@@ -89,29 +92,31 @@ export default function RouletteGame({ game }: GameProps) {
     <div className="grid gap-4">
       <BalanceBar />
       <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
-        <div className="card flex flex-col items-center gap-3">
+        <div className="game-stage flex flex-col items-center gap-3">
+          <div className="slot-title" aria-hidden="true">{t("roulette.stageTitle")}</div>
+          {cel && last && <WinFx key={last.number + "-" + last.payout} payout={last.payout} stake={last.stake} reduced={m.reduced} fmt={n} label={{ win: t("slots.tierWin"), big: t("slots.tierBig"), mega: t("slots.tierMega") }} />}
           <Wheel angle={angle} animate={anim} ms={ms} />
-          <p className="min-h-6 text-center text-sm text-muted" aria-live="polite">
+          <p className="min-h-6 text-center text-sm" style={{ color: "hsl(210 20% 85%)" }} aria-live="polite">
             {spinning ? t("roulette.spinning") : last ? t("roulette.landed", { n: last.number, c: t(`roulette.colors.${colorOf(last.number)}`) }) : t("roulette.ready")}
           </p>
         </div>
         <div className="card grid gap-4">
           <div>
             <p className="mb-2 text-sm font-semibold">{t("roulette.chipValue")}</p>
-            <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={spinning} label={t("roulette.chipValue")} />
+            <StakePicker steps={cfg.stakeSteps} value={stake} onChange={setStake} disabled={spinning || cel} label={t("roulette.chipValue")} />
           </div>
           <div className="grid grid-cols-[repeat(13,minmax(0,1fr))] gap-1" role="group" aria-label={t("roulette.numbers")}>
             <button className="roulette-cell rc-green row-span-3 !aspect-auto" aria-pressed={has("straight", 0)} onClick={() => toggle("straight", 0)} aria-label="0">0</button>
             {[3, 2, 1].flatMap((row) => Array.from({ length: 12 }, (_, c) => c * 3 + row)).map((num) => (
-              <button key={num} className={`roulette-cell rc-${colorOf(num)}`} aria-pressed={has("straight", num)} onClick={() => toggle("straight", num)} disabled={spinning} aria-label={`${num} ${t(`roulette.colors.${colorOf(num)}`)}`}>{num}</button>
+              <button key={num} className={`roulette-cell rc-${colorOf(num)}`} aria-pressed={has("straight", num)} onClick={() => toggle("straight", num)} disabled={spinning || cel} aria-label={`${num} ${t(`roulette.colors.${colorOf(num)}`)}`}>{num}</button>
             ))}
           </div>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
             {(["red", "black", "green", "odd", "even", "low", "high"] as const).map((k) => (
-              <button key={k} className="bet-btn" aria-pressed={has(k)} disabled={spinning} onClick={() => toggle(k)}>{t(`roulette.kinds.${k}`)}<span className="block text-xs font-normal text-faint">{k === "green" ? cfg.kinds.find((x: any) => x.kind === "green").multiplier : cfg.kinds.find((x: any) => x.kind === k).multiplier}×</span></button>
+              <button key={k} className="bet-btn" aria-pressed={has(k)} disabled={spinning || cel} onClick={() => toggle(k)}>{t(`roulette.kinds.${k}`)}<span className="block text-xs font-normal text-faint">{k === "green" ? cfg.kinds.find((x: any) => x.kind === "green").multiplier : cfg.kinds.find((x: any) => x.kind === k).multiplier}×</span></button>
             ))}
             {[1, 2, 3].map((d) => (
-              <button key={d} className="bet-btn" aria-pressed={has("dozen", d)} disabled={spinning} onClick={() => toggle("dozen", d)}>{t("roulette.dozen", { n: d })}<span className="block text-xs font-normal text-faint">{cfg.kinds.find((x: any) => x.kind === "dozen").multiplier}×</span></button>
+              <button key={d} className="bet-btn" aria-pressed={has("dozen", d)} disabled={spinning || cel} onClick={() => toggle("dozen", d)}>{t("roulette.dozen", { n: d })}<span className="block text-xs font-normal text-faint">{cfg.kinds.find((x: any) => x.kind === "dozen").multiplier}×</span></button>
             ))}
           </div>
           {bets.length > 0 && (
@@ -121,8 +126,8 @@ export default function RouletteGame({ game }: GameProps) {
           )}
           <p className="text-xs text-faint">{t("roulette.maxBets", { n: cfg.maxBets })}</p>
           <div className="flex flex-wrap gap-2">
-            <button className="btn btn-primary btn-lg flex-1" disabled={busy || spinning || !bets.length} onClick={spin}><Play size={18} />{t("roulette.spin")} · {n(total)}</button>
-            <button className="btn btn-secondary" disabled={spinning || !bets.length} onClick={() => setBets([])}><Eraser size={16} />{t("roulette.clear")}</button>
+            <button className="btn btn-primary btn-lg flex-1" disabled={busy || spinning || cel || !bets.length} onClick={spin}><Play size={18} />{t("roulette.spin")} · {n(total)}</button>
+            <button className="btn btn-secondary" disabled={spinning || cel || !bets.length} onClick={() => setBets([])}><Eraser size={16} />{t("roulette.clear")}</button>
           </div>
         </div>
       </div>
