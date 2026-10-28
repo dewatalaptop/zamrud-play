@@ -38,7 +38,7 @@ export default function Landing() {
             <div className="mt-8 max-w-xl rounded-2xl border border-line bg-surface/70 p-4 backdrop-blur"><Disclosure /></div>
           </div>
           <div className="relative hidden lg:block" aria-hidden="true">
-            <img src="/img/mascot.webp" alt="" width={440} height={600} decoding="async" className="mascot-img pointer-events-none absolute -right-16 -top-28 z-10 w-64" />
+            <img src="/img/mascot.webp" alt="" width={440} height={600} loading="lazy" decoding="async" className="mascot-img pointer-events-none absolute -right-28 -top-28 z-10 w-64" />
             <div className="slot-machine mx-auto mr-32 max-w-[18rem] rotate-2">
               <div className="grid grid-cols-3 gap-3">{["SEVEN", "STAR", "DIAMOND"].map((s) => <div key={s} className="reel grid place-items-center"><SymbolIcon id={s} size={76} /></div>)}</div>
               <div className="mt-4 flex items-center justify-between rounded-2xl bg-surface-2 px-4 py-3 text-sm"><span className="flex items-center gap-2 text-muted"><CoinIcon size={18} />{t("landing.demoBalance")}</span><span className="num font-bold">{n(10000)}</span></div>

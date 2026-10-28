@@ -278,3 +278,4 @@ html, body { overflow-x: clip; }
 .reel-cell.rare svg { position: relative; }
 @keyframes haloPulse { 0%, 100% { opacity: .25; transform: scale(.9) } 50% { opacity: .9; transform: scale(1.08) } }
 @media (prefers-reduced-motion: reduce) { .slot-bgfx img, .reel-thud-a, .reel-thud-b, .reel-cell.rare::before { animation: none; } }
+:root[data-motion="reduced"] .reel-cell.rare::before, :root[data-motion="off"] .reel-cell.rare::before { animation: none; }
